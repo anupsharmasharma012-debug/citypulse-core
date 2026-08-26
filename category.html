@@ -8,41 +8,80 @@
 </head>
 <body>
     <div class="max-width-container">
-        <city-header></city-header>
+        <!-- BACK BUTTON HEADER -->
+        <city-topbar title="All Categories"></city-topbar>
 
-        <!-- Dynamic Ad Space -->
-        <div style="padding: 0 10px;"><city-ad-space></city-ad-space></div>
+        <div style="padding: 10px 16px;"><city-ad-space></city-ad-space></div>
 
-        <!-- FIXED PANEL LAYOUT -->
-        <main style="padding: 0 10px; display: flex; gap: 10px; margin-bottom: 80px; height: 65vh;">
+        <!-- FULL PAGE PANELS FIX -->
+        <main style="display: flex; height: calc(100vh - 200px); border-top: 1px solid var(--card-border);">
             
-            <!-- Left Sidebar (35% Width) -->
-            <div class="cp-card" style="width: 35%; padding: 10px 8px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; margin: 0;">
-                <div style="font-size: 10px; font-weight: 800; color: var(--text-muted); padding-left: 6px;">MODULES</div>
-                <button onclick="showPanel('civic')" id="btn-civic" style="width: 100%; text-align: left; padding: 12px 8px; background: rgba(59,130,246,0.15); color: var(--accent-blue); border: none; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;">📢 Civic</button>
-                <button onclick="showPanel('news')" id="btn-news" style="width: 100%; text-align: left; padding: 12px 8px; background: transparent; color: var(--text-main); border: none; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;">📰 News</button>
+            <!-- Left Sidebar (Fixed 100px width for mobile) -->
+            <div style="width: 100px; background: rgba(150,150,150,0.05); border-right: 1px solid var(--card-border); padding: 10px 6px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;">
+                <button onclick="showPanel('civic')" id="btn-civic" style="width: 100%; text-align: center; padding: 16px 8px; background: rgba(59,130,246,0.15); color: var(--accent-blue); border: none; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px;"><span style="font-size: 20px;">📢</span> Civic</button>
+                <button onclick="showPanel('news')" id="btn-news" style="width: 100%; text-align: center; padding: 16px 8px; background: transparent; color: var(--text-main); border: none; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px;"><span style="font-size: 20px;">📰</span> News</button>
+                <button onclick="showToast('Marketplace Coming Soon')" style="width: 100%; text-align: center; padding: 16px 8px; background: transparent; color: var(--text-muted); border: none; font-size: 11px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 6px;"><span style="font-size: 20px;">🛒</span> Shops</button>
             </div>
 
-            <!-- Right Content Area (65% Width) -->
-            <div class="cp-card" style="width: 65%; padding: 16px; overflow-y: auto; margin: 0;">
+            <!-- Right Content Area (Takes remaining width) -->
+            <div style="flex: 1; padding: 16px; overflow-y: auto;">
                 
-                <!-- Civic Panel (Deep Content) -->
+                <!-- Civic Panel (DEEPEST CONTENT) -->
                 <div id="panel-civic" class="flex-column gap-3">
-                    <h3 style="margin: 0; font-size: 15px;">Civic Hub</h3>
-                    <p style="margin: 0; font-size: 12px; color: var(--text-muted); line-height: 1.4;">Manage local complaints and track public notices.</p>
-                    <hr style="border: 0; border-top: 1px solid var(--card-border); margin: 5px 0;">
+                    <h3 style="margin: 0; font-size: 16px;">Jan Shikayat Hub</h3>
+                    <p style="margin: 0; font-size: 12px; color: var(--text-muted); line-height: 1.4;">Official portal for municipal services and public grievances.</p>
                     
-                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-media-civic/civic.html" class="cp-btn-primary" style="font-size: 12px; padding: 10px;">Submit Grievance ↗</a>
-                    <button class="cp-btn-outline" style="font-size: 12px; padding: 10px;" onclick="showToast('Feature Locked: Coming Soon')">Track Application</button>
+                    <div style="background: rgba(16,185,129,0.1); border: 1px solid var(--accent-green); border-radius: 10px; padding: 10px; display: flex; gap: 10px;">
+                        <span style="font-size: 18px;">✅</span>
+                        <div>
+                            <div style="font-size: 12px; font-weight: 700; color: var(--accent-green);">84% Resolution Rate</div>
+                            <div style="font-size: 10px; color: var(--text-main);">In your pincode this month</div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin: 10px 0 0 0; font-size: 13px;">Quick Actions</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <a href="https://anupsharmasharma012-debug.github.io/citypulse-media-civic/civic.html" class="cp-card" style="padding: 10px; margin: 0; text-align: center; text-decoration: none;">
+                            <div style="font-size: 24px; margin-bottom: 5px;">✍️</div>
+                            <div style="font-size: 11px; color: var(--text-main); font-weight: 600;">File Issue</div>
+                        </a>
+                        <div class="cp-card" style="padding: 10px; margin: 0; text-align: center;" onclick="showToast('Opening Tracker...')">
+                            <div style="font-size: 24px; margin-bottom: 5px;">🔍</div>
+                            <div style="font-size: 11px; color: var(--text-main); font-weight: 600;">Track Status</div>
+                        </div>
+                    </div>
+                    
+                    <h4 style="margin: 10px 0 0 0; font-size: 13px;">Important Departments</h4>
+                    <ul style="padding-left: 16px; margin: 0; font-size: 12px; color: var(--text-muted); line-height: 1.8;">
+                        <li>Public Health & Sanitation</li>
+                        <li>Water Works (Supply & Sewage)</li>
+                        <li>Road Transport & Infrastructure</li>
+                        <li>Electricity & Street Lighting</li>
+                    </ul>
                 </div>
 
-                <!-- News Panel (Deep Content) -->
+                <!-- News Panel (DEEPEST CONTENT) -->
                 <div id="panel-news" class="flex-column gap-3" style="display: none;">
-                    <h3 style="margin: 0; font-size: 15px;">Local Media</h3>
-                    <p style="margin: 0; font-size: 12px; color: var(--text-muted); line-height: 1.4;">Daily updates from your municipality and nearby events.</p>
-                    <hr style="border: 0; border-top: 1px solid var(--card-border); margin: 5px 0;">
+                    <h3 style="margin: 0; font-size: 16px;">Local Media & Updates</h3>
+                    <p style="margin: 0; font-size: 12px; color: var(--text-muted); line-height: 1.4;">Real-time updates curated for your area.</p>
                     
-                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-media-civic/news.html" class="cp-btn-primary" style="font-size: 12px; padding: 10px;">Read E-Paper ↗</a>
+                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-media-civic/news.html" class="cp-btn-primary" style="font-size: 12px;">Go to News Feed ↗</a>
+
+                    <h4 style="margin: 10px 0 0 0; font-size: 13px;">Today's Headlines</h4>
+                    <div class="d-flex gap-2" style="border-bottom: 1px solid var(--card-border); padding-bottom: 8px;">
+                        <div style="width: 40px; height: 40px; background: rgba(59,130,246,0.1); border-radius: 8px; display: flex; justify-content: center; align-items: center;">📄</div>
+                        <div>
+                            <div style="font-size: 12px; font-weight: 600;">New Highway Tender Passed</div>
+                            <div style="font-size: 10px; color: var(--text-muted);">2 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <div style="width: 40px; height: 40px; background: rgba(59,130,246,0.1); border-radius: 8px; display: flex; justify-content: center; align-items: center;">🎥</div>
+                        <div>
+                            <div style="font-size: 12px; font-weight: 600;">Local Festival Prep Starts</div>
+                            <div style="font-size: 10px; color: var(--text-muted);">Video • 5 hours ago</div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -67,11 +106,8 @@
         }
     </script>
 
-    <!-- Master Scripts -->
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/config.js"></script>
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/store.js"></script>
-    <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/utils.js"></script>
-    <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/auth-guard.js"></script>
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/components.js"></script>
 </body>
 </html>
