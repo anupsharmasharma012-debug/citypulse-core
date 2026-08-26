@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityPulse - Search</title>
+    <link rel="stylesheet" href="https://anupsharmasharma012-debug.github.io/citypulse-core/style.css">
+</head>
+<body>
+    <div class="max-width-container">
+        <!-- BACK BUTTON HEADER WALA NAYA COMPONENT -->
+        <city-topbar title="Search App"></city-topbar>
+        
+        <main style="padding: 10px 16px; margin-bottom: 80px;" class="flex-column gap-4">
+            
+            <!-- Real Search Input Area -->
+            <div style="display: flex; gap: 10px;">
+                <input type="text" class="cp-input" placeholder="Search news, shops, complaints..." style="margin:0; flex:1;" autofocus>
+                <button class="cp-btn-primary" style="width: 50px;">🔍</button>
+            </div>
+
+            <!-- Deep Content: Trending Searches -->
+            <div>
+                <h4 style="font-size: 13px; color: var(--text-muted); margin: 0 0 10px 0;">Trending in Bhatpara</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <span style="background: rgba(150,150,150,0.1); padding: 8px 12px; border-radius: 20px; font-size: 12px; border: 1px solid var(--card-border);">⚡ Power Cut Update</span>
+                    <span style="background: rgba(150,150,150,0.1); padding: 8px 12px; border-radius: 20px; font-size: 12px; border: 1px solid var(--card-border);">🚰 Water Supply</span>
+                    <span style="background: rgba(150,150,150,0.1); padding: 8px 12px; border-radius: 20px; font-size: 12px; border: 1px solid var(--card-border);">🛍️ Wholesale Markets</span>
+                    <span style="background: rgba(150,150,150,0.1); padding: 8px 12px; border-radius: 20px; font-size: 12px; border: 1px solid var(--card-border);">🏥 Night Pharmacies</span>
+                </div>
+            </div>
+
+            <city-ad-space></city-ad-space>
+
+            <!-- Deep Content: Search Categories -->
+            <div class="cp-card flex-column gap-3">
+                <h3 style="margin:0; font-size: 14px;">Browse by Categories</h3>
+                <div class="flex-between" style="border-bottom: 1px solid var(--card-border); padding-bottom: 10px;">
+                    <div class="d-flex gap-2 align-items-center"><span style="font-size: 18px;">🛒</span> <span style="font-size: 13px;">Local Shops & Vendors</span></div>
+                    <span style="color: var(--text-muted);">›</span>
+                </div>
+                <div class="flex-between" style="border-bottom: 1px solid var(--card-border); padding-bottom: 10px;">
+                    <div class="d-flex gap-2 align-items-center"><span style="font-size: 18px;">🚕</span> <span style="font-size: 13px;">Transport & Ride</span></div>
+                    <span style="color: var(--text-muted);">›</span>
+                </div>
+                <div class="flex-between">
+                    <div class="d-flex gap-2 align-items-center"><span style="font-size: 18px;">📢</span> <span style="font-size: 13px;">Public Notices</span></div>
+                    <span style="color: var(--text-muted);">›</span>
+                </div>
+            </div>
+        </main>
+        <bottom-nav></bottom-nav>
+    </div>
+    <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/config.js"></script>
+    <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/store.js"></script>
+    <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/components.js"></script>
+</body>
+</html>
+
