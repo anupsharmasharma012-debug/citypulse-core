@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityPulse - Explore</title>
+    <link rel="stylesheet" href="https://anupsharmasharma012-debug.github.io/citypulse-core/style.css">
+</head>
+<body>
+    <div class="max-width-container">
+        <!-- BACK BUTTON HEADER -->
+        <city-topbar title="Explore Area"></city-topbar>
+        
+        <main style="padding: 10px 16px; margin-bottom: 80px;" class="flex-column gap-4">
+            
+            <!-- Map Placeholder -->
+            <div style="height: 150px; background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Google_Maps_icon.svg/1024px-Google_Maps_icon.svg.png') center/cover; border-radius: 16px; border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: center; position: relative;">
+                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); border-radius: 16px;"></div>
+                <div style="z-index: 1; text-align: center;">
+                    <span style="font-size: 24px;">📍</span>
+                    <div style="color: #fff; font-weight: 700; font-size: 14px;">Bhatpara Live Map</div>
+                    <button class="cp-btn-primary" style="padding: 6px 12px; margin-top: 8px; font-size: 11px;">View Area</button>
+                </div>
+            </div>
+
+            <city-ad-space></city-ad-space>
+
+            <!-- Deep Content: Hyperlocal Feeds -->
+            <div>
+                <h3 style="margin: 0 0 12px 0; font-size: 15px;">Discover Services Near You</h3>
+                
+                <div class="cp-card flex-between" style="padding: 12px;">
+                    <div class="d-flex gap-3 align-items-center">
+                        <div style="font-size: 24px;">🛠️</div>
+                        <div>
+                            <div style="font-size: 13px; font-weight: 700;">Find Plumbers & Electricians</div>
+                            <div style="font-size: 11px; color: var(--text-muted);">24 Verified professionals nearby</div>
+                        </div>
+                    </div>
+                    <button class="cp-btn-outline" style="width: auto; padding: 6px 12px; font-size: 12px;">View</button>
+                </div>
+
+                <div class="cp-card flex-between" style="padding: 12px;">
+                    <div class="d-flex gap-3 align-items-center">
+                        <div style="font-size: 24px;">🚑</div>
+                        <div>
+                            <div style="font-size: 13px; font-weight: 700;">Emergency Hospitals</div>
+                            <div style="font-size: 11px; color: var(--text-muted);">Open 24x7 • Tap to call</div>
+                        </div>
+                    </div>
+                    <button class="cp-btn-outline" style="width: auto; padding: 6px 12px; font-size: 12px;">View</button>
+                </div>
+            </div>
+        </main>
+        <bottom-nav></bottom-nav>
+    </div>
+    <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/config.js"></script>
+    <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/store.js"></script>
+    <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/components.js"></script>
+</body>
+</html>
+
