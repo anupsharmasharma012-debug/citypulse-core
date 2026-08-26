@@ -12,34 +12,34 @@
 
         <main style="padding: 10px 16px; display: flex; gap: 12px; margin-bottom: 70px;">
             <!-- Left Panel: Categories Menu -->
-            <div style="width: 35%; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 10px; display: flex; flex-direction: column; gap: 8px;">
-                <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); padding: 6px;">MODULES</div>
-                <a href="#civic" onclick="showPanel('civic')" style="padding: 10px; background: rgba(59,130,246,0.1); color: var(--accent); border-radius: 8px; font-size: 13px; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 6px;">📢 Civic Hub</a>
-                <a href="#news" onclick="showPanel('news')" style="padding: 10px; color: #fff; border-radius: 8px; font-size: 13px; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 6px;">📰 Local News</a>
-                <a href="#profile" onclick="showPanel('profile')" style="padding: 10px; color: #fff; border-radius: 8px; font-size: 13px; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 6px;">👤 Profile & Acc</a>
+            <div style="width: 40%; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 10px; display: flex; flex-direction: column; gap: 8px;">
+                <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); padding: 6px; letter-spacing: 0.5px;">MODULES</div>
+                <button onclick="showPanel('civic')" id="btn-civic" style="width: 100%; text-align: left; padding: 10px; background: rgba(59,130,246,0.15); color: #3b82f6; border: 1px solid rgba(59,130,246,0.3); border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px;">📢 Civic Hub</button>
+                <button onclick="showPanel('news')" id="btn-news" style="width: 100%; text-align: left; padding: 10px; background: transparent; color: #fff; border: 1px solid transparent; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px;">📰 News</button>
+                <button onclick="showPanel('profile')" id="btn-profile" style="width: 100%; text-align: left; padding: 10px; background: transparent; color: #fff; border: 1px solid transparent; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px;">👤 Profile</button>
             </div>
 
             <!-- Right Panel: Content Display -->
-            <div style="width: 65%; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px;">
+            <div style="width: 60%; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px;">
                 <!-- Civic Panel Content -->
                 <div id="panel-civic" style="display: flex; flex-direction: column; gap: 10px;">
                     <h3 style="font-size: 14px; font-weight: 700; color: #fff;">Civic & Jan Shikayat</h3>
-                    <p style="font-size: 12px; color: var(--text-muted);">Access public grievance portal and complaint tracker.</p>
-                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-media-civic/civic.html" style="background: var(--accent); color: #fff; padding: 8px 12px; border-radius: 8px; text-decoration: none; font-size: 12px; text-align: center; font-weight: 600;">Open Civic Portal ↗</a>
+                    <p style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">Access public grievance portal and complaint tracker.</p>
+                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-media-civic/civic.html" style="background: #3b82f6; color: #fff; padding: 10px; border-radius: 8px; text-decoration: none; font-size: 12px; text-align: center; font-weight: 600; margin-top: 5px;">Open Civic Portal ↗</a>
                 </div>
 
                 <!-- News Panel Content -->
                 <div id="panel-news" style="display: none; flex-direction: column; gap: 10px;">
                     <h3 style="font-size: 14px; font-weight: 700; color: #fff;">Local News & Updates</h3>
-                    <p style="font-size: 12px; color: var(--text-muted);">Read daily municipal updates and breaking news.</p>
-                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-media-civic/news.html" style="background: var(--accent); color: #fff; padding: 8px 12px; border-radius: 8px; text-decoration: none; font-size: 12px; text-align: center; font-weight: 600;">Open News Portal ↗</a>
+                    <p style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">Read daily municipal updates and breaking news.</p>
+                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-media-civic/news.html" style="background: #3b82f6; color: #fff; padding: 10px; border-radius: 8px; text-decoration: none; font-size: 12px; text-align: center; font-weight: 600; margin-top: 5px;">Open News Portal ↗</a>
                 </div>
 
                 <!-- Profile Panel Content -->
                 <div id="panel-profile" style="display: none; flex-direction: column; gap: 10px;">
                     <h3 style="font-size: 14px; font-weight: 700; color: #fff;">Profile Management</h3>
-                    <p style="font-size: 12px; color: var(--text-muted);">Manage your account settings and preferences.</p>
-                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-profile/profile.html" style="background: var(--accent); color: #fff; padding: 8px 12px; border-radius: 8px; text-decoration: none; font-size: 12px; text-align: center; font-weight: 600;">Open Profile ↗</a>
+                    <p style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">Manage your account settings and preferences.</p>
+                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-profile/profile.html" style="background: #3b82f6; color: #fff; padding: 10px; border-radius: 8px; text-decoration: none; font-size: 12px; text-align: center; font-weight: 600; margin-top: 5px;">Open Profile ↗</a>
                 </div>
             </div>
         </main>
@@ -52,9 +52,22 @@
             document.getElementById('panel-civic').style.display = type === 'civic' ? 'flex' : 'none';
             document.getElementById('panel-news').style.display = type === 'news' ? 'flex' : 'none';
             document.getElementById('panel-profile').style.display = type === 'profile' ? 'flex' : 'none';
+
+            // Active button styling handle
+            ['civic', 'news', 'profile'].forEach(t => {
+                let btn = document.getElementById('btn-' + t);
+                if(t === type) {
+                    btn.style.background = 'rgba(59,130,246,0.15)';
+                    btn.style.color = '#3b82f6';
+                    btn.style.borderColor = 'rgba(59,130,246,0.3)';
+                } else {
+                    btn.style.background = 'transparent';
+                    btn.style.color = '#fff';
+                    btn.style.borderColor = 'transparent';
+                }
+            });
         }
     </script>
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/components.js"></script>
 </body>
 </html>
-
