@@ -1,4 +1,4 @@
-// CityPulse Core Components - Cross-Repository Integrated Nav & Header
+// CityPulse Core Components - Clean Bottom Nav & Integrated Header
 
 class CityHeader extends HTMLElement {
     connectedCallback() {
@@ -35,14 +35,14 @@ class BottomNav extends HTMLElement {
                 <a href="https://anupsharmasharma012-debug.github.io/citypulse-core/" style="text-decoration: none; color: #94a3b8; font-size: 10px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 3px;">
                     <span style="font-size: 18px;">🏠</span>Home
                 </a>
-                <a href="https://anupsharmasharma012-debug.github.io/citypulse-media-civic/news.html" style="text-decoration: none; color: #94a3b8; font-size: 10px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 3px;">
-                    <span style="font-size: 18px;">🧭</span>News
+                <a href="#" style="text-decoration: none; color: #94a3b8; font-size: 10px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 3px;">
+                    <span style="font-size: 18px;">🧭</span>Explore
+                </a>
+                <a href="#" style="text-decoration: none; color: #94a3b8; font-size: 10px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 3px;">
+                    <span style="font-size: 18px;">🔍</span>Search
                 </a>
                 <a href="https://anupsharmasharma012-debug.github.io/citypulse-media-civic/civic.html" style="text-decoration: none; color: #94a3b8; font-size: 10px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 3px;">
-                    <span style="font-size: 18px;">📢</span>Civic
-                </a>
-                <a href="https://anupsharmasharma012-debug.github.io/citypulse-profile/settings.html" style="text-decoration: none; color: #94a3b8; font-size: 10px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 3px;">
-                    <span style="font-size: 18px;">⚙️</span>Settings
+                    <span style="font-size: 18px;">📂</span>Category
                 </a>
                 <a href="https://anupsharmasharma012-debug.github.io/citypulse-profile/profile.html" style="text-decoration: none; color: #94a3b8; font-size: 10px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 3px;">
                     <span style="font-size: 18px;">👤</span>Profile
