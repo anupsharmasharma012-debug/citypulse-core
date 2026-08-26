@@ -3,69 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CityPulse - Categories & Modules</title>
-    <link rel="stylesheet" href="style.css">
+    <title>CityPulse - Category Modules</title>
+    <link rel="stylesheet" href="https://anupsharmasharma012-debug.github.io/citypulse-core/style.css">
 </head>
 <body>
     <div class="max-width-container">
         <city-header></city-header>
 
-        <!-- Panels Layout Updated -->
-        <main style="padding: 10px 10px; display: flex; gap: 10px; margin-bottom: 70px;">
-            <!-- Left Panel -->
-            <div style="width: 38%; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 10px 6px; display: flex; flex-direction: column; gap: 6px;">
+        <!-- Dynamic Ad Space -->
+        <div style="padding: 0 10px;"><city-ad-space></city-ad-space></div>
+
+        <!-- FIXED PANEL LAYOUT -->
+        <main style="padding: 0 10px; display: flex; gap: 10px; margin-bottom: 80px; height: 65vh;">
+            
+            <!-- Left Sidebar (35% Width) -->
+            <div class="cp-card" style="width: 35%; padding: 10px 8px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; margin: 0;">
                 <div style="font-size: 10px; font-weight: 800; color: var(--text-muted); padding-left: 6px;">MODULES</div>
-                <button onclick="showPanel('civic')" id="btn-civic" style="width: 100%; text-align: left; padding: 10px 8px; background: rgba(59,130,246,0.15); color: #3b82f6; border: none; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px;">📢 Civic</button>
-                <button onclick="showPanel('news')" id="btn-news" style="width: 100%; text-align: left; padding: 10px 8px; background: transparent; color: var(--text-main); border: none; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px;">📰 News</button>
-                <button onclick="showPanel('profile')" id="btn-profile" style="width: 100%; text-align: left; padding: 10px 8px; background: transparent; color: var(--text-main); border: none; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px;">👤 Profile</button>
+                <button onclick="showPanel('civic')" id="btn-civic" style="width: 100%; text-align: left; padding: 12px 8px; background: rgba(59,130,246,0.15); color: var(--accent-blue); border: none; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;">📢 Civic</button>
+                <button onclick="showPanel('news')" id="btn-news" style="width: 100%; text-align: left; padding: 12px 8px; background: transparent; color: var(--text-main); border: none; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;">📰 News</button>
             </div>
 
-            <!-- Right Panel -->
-            <div style="width: 62%; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px;">
-                <!-- Civic Panel Content -->
-                <div id="panel-civic" style="display: flex; flex-direction: column; gap: 10px;">
-                    <h3 style="font-size: 14px; font-weight: 700; color: var(--text-main);">Civic Hub</h3>
-                    <p style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">Access public grievance portal & tracker.</p>
-                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-media-civic/civic.html" style="background: #3b82f6; color: #fff; padding: 10px; border-radius: 8px; text-decoration: none; font-size: 12px; text-align: center; font-weight: 600; margin-top: 5px;">Open Portal ↗</a>
+            <!-- Right Content Area (65% Width) -->
+            <div class="cp-card" style="width: 65%; padding: 16px; overflow-y: auto; margin: 0;">
+                
+                <!-- Civic Panel (Deep Content) -->
+                <div id="panel-civic" class="flex-column gap-3">
+                    <h3 style="margin: 0; font-size: 15px;">Civic Hub</h3>
+                    <p style="margin: 0; font-size: 12px; color: var(--text-muted); line-height: 1.4;">Manage local complaints and track public notices.</p>
+                    <hr style="border: 0; border-top: 1px solid var(--card-border); margin: 5px 0;">
+                    
+                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-media-civic/civic.html" class="cp-btn-primary" style="font-size: 12px; padding: 10px;">Submit Grievance ↗</a>
+                    <button class="cp-btn-outline" style="font-size: 12px; padding: 10px;" onclick="showToast('Feature Locked: Coming Soon')">Track Application</button>
                 </div>
 
-                <!-- News Panel Content -->
-                <div id="panel-news" style="display: none; flex-direction: column; gap: 10px;">
-                    <h3 style="font-size: 14px; font-weight: 700; color: var(--text-main);">Local News</h3>
-                    <p style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">Read daily municipal updates.</p>
-                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-media-civic/news.html" style="background: #3b82f6; color: #fff; padding: 10px; border-radius: 8px; text-decoration: none; font-size: 12px; text-align: center; font-weight: 600; margin-top: 5px;">Read News ↗</a>
+                <!-- News Panel (Deep Content) -->
+                <div id="panel-news" class="flex-column gap-3" style="display: none;">
+                    <h3 style="margin: 0; font-size: 15px;">Local Media</h3>
+                    <p style="margin: 0; font-size: 12px; color: var(--text-muted); line-height: 1.4;">Daily updates from your municipality and nearby events.</p>
+                    <hr style="border: 0; border-top: 1px solid var(--card-border); margin: 5px 0;">
+                    
+                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-media-civic/news.html" class="cp-btn-primary" style="font-size: 12px; padding: 10px;">Read E-Paper ↗</a>
                 </div>
 
-                <!-- Profile Panel Content -->
-                <div id="panel-profile" style="display: none; flex-direction: column; gap: 10px;">
-                    <h3 style="font-size: 14px; font-weight: 700; color: var(--text-main);">Your Profile</h3>
-                    <p style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">Manage your account settings.</p>
-                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-profile/profile.html" style="background: #3b82f6; color: #fff; padding: 10px; border-radius: 8px; text-decoration: none; font-size: 12px; text-align: center; font-weight: 600; margin-top: 5px;">Go to Profile ↗</a>
-                </div>
             </div>
         </main>
-
         <bottom-nav></bottom-nav>
     </div>
 
+    <!-- Panel Switching Logic -->
     <script>
         function showPanel(type) {
             document.getElementById('panel-civic').style.display = type === 'civic' ? 'flex' : 'none';
             document.getElementById('panel-news').style.display = type === 'news' ? 'flex' : 'none';
-            document.getElementById('panel-profile').style.display = type === 'profile' ? 'flex' : 'none';
 
-            ['civic', 'news', 'profile'].forEach(t => {
+            ['civic', 'news'].forEach(t => {
                 let btn = document.getElementById('btn-' + t);
                 if(t === type) {
-                    btn.style.background = 'rgba(59,130,246,0.15)';
-                    btn.style.color = '#3b82f6';
+                    btn.style.background = 'rgba(59,130,246,0.15)'; btn.style.color = 'var(--accent-blue)';
                 } else {
-                    btn.style.background = 'transparent';
-                    btn.style.color = 'var(--text-main)'; // Theme dynamic text
+                    btn.style.background = 'transparent'; btn.style.color = 'var(--text-main)';
                 }
             });
         }
     </script>
+
+    <!-- Master Scripts -->
+    <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/config.js"></script>
+    <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/store.js"></script>
+    <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/utils.js"></script>
+    <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/auth-guard.js"></script>
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/components.js"></script>
 </body>
 </html>
