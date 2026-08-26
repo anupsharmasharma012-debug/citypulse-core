@@ -11,23 +11,33 @@
         <!-- BACK BUTTON HEADER -->
         <city-topbar title="All Categories"></city-topbar>
 
-        <div style="padding: 10px 16px;"><city-ad-space></city-ad-space></div>
+        <!-- NAYA: DEEP CONTEXT BAR (Location & Weather) -->
+        <div class="flex-between" style="padding: 10px 16px; background: var(--bg-color); border-bottom: 1px solid var(--card-border);">
+            <a href="https://anupsharmasharma012-debug.github.io/citypulse-profile/location.html" style="text-decoration: none; display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-main); font-weight: 700; background: rgba(150,150,150,0.1); padding: 6px 12px; border-radius: 20px;">
+                <span>📍</span> Bhatpara (743123)
+            </a>
+            <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #f59e0b; font-weight: 700; background: rgba(245, 158, 11, 0.1); padding: 6px 12px; border-radius: 20px;">
+                <span>🌤️</span> 32°C (AQI: 85)
+            </div>
+        </div>
 
-        <!-- FULL PAGE PANELS FIX -->
-        <main style="display: flex; height: calc(100vh - 200px); border-top: 1px solid var(--card-border);">
+        <div style="padding: 10px 16px 0 16px;"><city-ad-space></city-ad-space></div>
+
+        <!-- FULL PAGE PANELS -->
+        <!-- Height adjust ki gayi hai taaki naya bar fit aa sake bina cut huye -->
+        <main style="display: flex; height: calc(100vh - 260px); border-top: 1px solid var(--card-border);">
             
             <!-- Left Sidebar -->
             <div style="width: 100px; background: rgba(150,150,150,0.05); border-right: 1px solid var(--card-border); padding: 10px 6px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;">
                 <button onclick="showPanel('civic')" id="btn-civic" style="width: 100%; text-align: center; padding: 16px 8px; background: rgba(59,130,246,0.15); color: var(--accent-blue); border: none; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px;"><span style="font-size: 20px;">📢</span> Civic</button>
                 <button onclick="showPanel('news')" id="btn-news" style="width: 100%; text-align: center; padding: 16px 8px; background: transparent; color: var(--text-main); border: none; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px;"><span style="font-size: 20px;">📰</span> News</button>
-                <!-- PROFILE BUTTON WAPAS AA GAYA -->
                 <button onclick="showPanel('profile')" id="btn-profile" style="width: 100%; text-align: center; padding: 16px 8px; background: transparent; color: var(--text-main); border: none; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px;"><span style="font-size: 20px;">👤</span> Profile</button>
             </div>
 
             <!-- Right Content Area -->
             <div style="flex: 1; padding: 16px; overflow-y: auto;">
                 
-                <!-- Civic Panel (DEEPEST CONTENT) -->
+                <!-- Civic Panel (DEEP CONTENT) -->
                 <div id="panel-civic" class="flex-column gap-3">
                     <h3 style="margin: 0; font-size: 16px;">Jan Shikayat Hub</h3>
                     <p style="margin: 0; font-size: 12px; color: var(--text-muted); line-height: 1.4;">Official portal for municipal services.</p>
@@ -35,13 +45,13 @@
                         <span style="font-size: 18px;">✅</span>
                         <div>
                             <div style="font-size: 12px; font-weight: 700; color: var(--accent-green);">84% Resolution Rate</div>
-                            <div style="font-size: 10px; color: var(--text-main);">In your area this month</div>
+                            <div style="font-size: 10px; color: var(--text-main);">In Bhatpara this month</div>
                         </div>
                     </div>
                     <a href="https://anupsharmasharma012-debug.github.io/citypulse-media-civic/civic.html" class="cp-btn-primary" style="font-size: 12px; margin-top: 10px;">File a New Issue ↗</a>
                 </div>
 
-                <!-- News Panel (DEEPEST CONTENT) -->
+                <!-- News Panel (DEEP CONTENT) -->
                 <div id="panel-news" class="flex-column gap-3" style="display: none;">
                     <h3 style="margin: 0; font-size: 16px;">Local Media</h3>
                     <p style="margin: 0; font-size: 12px; color: var(--text-muted); line-height: 1.4;">Real-time updates curated for your area.</p>
@@ -51,11 +61,10 @@
                     <span style="font-size: 12px; padding: 6px 12px; background: rgba(150,150,150,0.1); border-radius: 16px; display: inline-block;">#HighwayProject</span>
                 </div>
 
-                <!-- Profile Panel (WAPAS AAYA HUA DEEPEST CONTENT) -->
+                <!-- Profile Panel (DEEP CONTENT) -->
                 <div id="panel-profile" class="flex-column gap-3" style="display: none;">
                     <h3 style="margin: 0; font-size: 16px;">Account Overview</h3>
                     <p style="margin: 0; font-size: 12px; color: var(--text-muted); line-height: 1.4;">Quick summary of your CityPulse account.</p>
-                    
                     <div class="cp-card flex-between" style="padding: 10px; margin: 0;">
                         <div class="d-flex gap-2 align-items-center">
                             <span style="font-size: 20px;">🛡️</span>
@@ -66,7 +75,6 @@
                         </div>
                         <span class="cp-badge-success">Done</span>
                     </div>
-
                     <a href="https://anupsharmasharma012-debug.github.io/citypulse-profile/profile.html" class="cp-btn-primary" style="font-size: 12px; margin-top: 10px;">Manage Full Profile ↗</a>
                 </div>
 
