@@ -1,16 +1,26 @@
-// CityPulse Core Components - Header, Bottom Nav & Theme Engine
+// CityPulse Core Components - Updated Top Bar & Bottom Nav
 
 class CityHeader extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-            <header style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: rgba(19,24,36,0.9); border: 1px solid #222b3d; border-radius: 12px; margin-bottom: 15px; backdrop-filter: blur(10px);">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <span style="font-size: 20px;">🏙️</span>
-                    <span style="font-size: 16px; font-weight: 900; background: linear-gradient(135deg, #3b82f6, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">CityPulse</span>
+            <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: rgba(19,24,36,0.9); border: 1px solid #222b3d; border-radius: 12px; margin-bottom: 15px; backdrop-filter: blur(10px);">
+                <!-- Left: Notification -->
+                <div style="display: flex; align-items: center;">
+                    <a href="notification.html" style="text-decoration: none; font-size: 18px; background: rgba(255,255,255,0.05); padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative;">
+                        🔔
+                        <span style="position: absolute; top: 2px; right: 2px; width: 8px; height: 8px; background: #ef4444; border-radius: 50%;"></span>
+                    </a>
                 </div>
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <a href="notification.html" style="text-decoration: none; font-size: 18px; background: rgba(255,255,255,0.05); padding: 6px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">🔔</a>
-                    <a href="profile.html" style="text-decoration: none; font-size: 18px; background: rgba(255,255,255,0.05); padding: 6px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">👤</a>
+
+                <!-- Right: Location & Weather -->
+                <div style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.03); padding: 6px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
+                    <div style="display: flex; align-items: center; gap: 4px; font-size: 12px; color: #94a3b8;">
+                        <span>📍</span> <span style="color: #fff; font-weight: 600;">Bhatpara</span>
+                    </div>
+                    <div style="width: 1px; height: 12px; background: #222b3d;"></div>
+                    <div style="display: flex; align-items: center; gap: 4px; font-size: 12px; color: #f59e0b;">
+                        <span>🌤️</span> <span style="font-weight: 600;">32°C</span>
+                    </div>
                 </div>
             </header>
         `;
@@ -22,21 +32,23 @@ class BottomNav extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
             <nav style="position: fixed; bottom: 0; left: 0; right: 0; background: rgba(13, 17, 23, 0.95); backdrop-filter: blur(10px); border-top: 1px solid #222b3d; display: flex; justify-content: space-around; padding: 10px 0; z-index: 1000;">
-                <a href="index.html" style="text-decoration: none; color: #94a3b8; font-size: 10px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 4px;">
-                    <span style="font-size: 20px;">🏠</span>Home
+                <a href="index.html" style="text-decoration: none; color: #94a3b8; font-size: 10px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 3px;">
+                    <span style="font-size: 18px;">🏠</span>Home
                 </a>
-                <a href="category.html" style="text-decoration: none; color: #3b82f6; font-size: 10px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 4px;">
-                    <span style="font-size: 20px;">📂</span>Category
+                <a href="explore.html" style="text-decoration: none; color: #94a3b8; font-size: 10px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 3px;">
+                    <span style="font-size: 18px;">🧭</span>Explore
                 </a>
-                <a href="civic.html" style="text-decoration: none; color: #94a3b8; font-size: 10px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 4px;">
-                    <span style="font-size: 20px;">🏛️</span>Civic
+                <a href="search.html" style="text-decoration: none; color: #94a3b8; font-size: 10px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 3px;">
+                    <span style="font-size: 18px;">🔍</span>Search
                 </a>
-                <a href="profile.html" style="text-decoration: none; color: #94a3b8; font-size: 10px; font-weight: 700; display: flex-direction: column; align-items: center; gap: 4px;">
-                    <span style="font-size: 20px;">👤</span>Profile
+                <a href="category.html" style="text-decoration: none; color: #94a3b8; font-size: 10px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 3px;">
+                    <span style="font-size: 18px;">📂</span>Category
+                </a>
+                <a href="profile.html" style="text-decoration: none; color: #94a3b8; font-size: 10px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 3px;">
+                    <span style="font-size: 18px;">👤</span>Profile
                 </a>
             </nav>
         `;
     }
 }
 customElements.define('bottom-nav', BottomNav);
-
