@@ -30,7 +30,7 @@
         /* LAYOUT */
         .split-layout { display: flex; height: calc(100vh - 120px); overflow: hidden; background: var(--bg-color); }
 
-        /* LEFT PANEL (Updated for colored boxes) */
+        /* LEFT PANEL */
         .left-panel { 
             width: 32%; 
             background: var(--bg-color); 
@@ -44,8 +44,8 @@
         /* COLORFUL TAB BOXES STYLE */
         .side-tab { 
             padding: 12px 4px; 
-            margin: 6px 8px 6px 0; /* Spacing between boxes */
-            border-radius: 0 16px 16px 0; /* Pill shape attaching to left edge */
+            margin: 6px 8px 6px 0; 
+            border-radius: 0 16px 16px 0; 
             display: flex; flex-direction: column; align-items: center; gap: 6px; 
             text-align: center; cursor: pointer; 
             border-left: 4px solid transparent; 
@@ -65,10 +65,11 @@
         .side-tab.promo-tab .tab-icon { background: rgba(234, 88, 12, 0.15); }
         .side-tab.promo-tab.active { background: rgba(234, 88, 12, 0.15); border-left-color: #ea580c; }
 
-        /* SOS (Red) */
-        .side-tab.sos-tab { background: rgba(239, 68, 68, 0.05); color: #ef4444; }
-        .side-tab.sos-tab .tab-icon { background: rgba(239, 68, 68, 0.15); }
-        .side-tab.sos-tab.active { background: rgba(239, 68, 68, 0.15); border-left-color: #ef4444; }
+        /* 🔥 SOS FIX: Deep Solid Red for Emergency Alert Feel */
+        .side-tab.sos-tab { background: rgba(239, 68, 68, 0.08); color: #dc2626; }
+        .side-tab.sos-tab .tab-icon { background: rgba(239, 68, 68, 0.2); }
+        .side-tab.sos-tab.active { background: #ef4444; color: #ffffff; border-left-color: #991b1b; } /* Becomes Solid Red on Active */
+        .side-tab.sos-tab.active .tab-icon { background: rgba(255, 255, 255, 0.25); color: #ffffff; }
 
         /* News & Local (Blue) */
         .side-tab.news-tab { background: rgba(59, 130, 246, 0.05); color: #2563eb; }
@@ -143,19 +144,19 @@
 
         <main class="split-layout">
             
-            <!-- LEFT PANEL (Now fully colorful with classes applied!) -->
+            <!-- LEFT PANEL (Using strict IDs for Bulletproof Click Syncing) -->
             <div class="left-panel">
-                <div class="side-tab promo-tab active" onclick="switchCategory('offers', this)"><div class="tab-icon">🔥</div><div class="tab-text">Promos</div></div>
-                <div class="side-tab sos-tab" onclick="switchCategory('sos', this)"><div class="tab-icon">🚨</div><div class="tab-text">SOS</div></div>
-                <div class="side-tab news-tab" onclick="switchCategory('news', this)"><div class="tab-icon">📰</div><div class="tab-text">News</div></div>
-                <div class="side-tab ent-tab" onclick="switchCategory('entertainment', this)"><div class="tab-icon">🎬</div><div class="tab-text">Entertain</div></div>
-                <div class="side-tab daily-tab" onclick="switchCategory('daily', this)"><div class="tab-icon">🛒</div><div class="tab-text">Groceries</div></div>
-                <div class="side-tab serv-tab" onclick="switchCategory('services', this)"><div class="tab-icon">🔌</div><div class="tab-text">Services</div></div>
-                <div class="side-tab trans-tab" onclick="switchCategory('transport', this)"><div class="tab-icon">🛺</div><div class="tab-text">Transport</div></div>
-                <div class="side-tab health-tab" onclick="switchCategory('health', this)"><div class="tab-icon">💊</div><div class="tab-text">Health</div></div>
+                <div class="side-tab promo-tab active" id="tab-offers" onclick="switchCategory('offers')"><div class="tab-icon">🔥</div><div class="tab-text">Promos</div></div>
+                <div class="side-tab sos-tab" id="tab-sos" onclick="switchCategory('sos')"><div class="tab-icon">🚨</div><div class="tab-text">SOS</div></div>
+                <div class="side-tab news-tab" id="tab-news" onclick="switchCategory('news')"><div class="tab-icon">📰</div><div class="tab-text">News</div></div>
+                <div class="side-tab ent-tab" id="tab-entertainment" onclick="switchCategory('entertainment')"><div class="tab-icon">🎬</div><div class="tab-text">Entertain</div></div>
+                <div class="side-tab daily-tab" id="tab-daily" onclick="switchCategory('daily')"><div class="tab-icon">🛒</div><div class="tab-text">Groceries</div></div>
+                <div class="side-tab serv-tab" id="tab-services" onclick="switchCategory('services')"><div class="tab-icon">🔌</div><div class="tab-text">Services</div></div>
+                <div class="side-tab trans-tab" id="tab-transport" onclick="switchCategory('transport')"><div class="tab-icon">🛺</div><div class="tab-text">Transport</div></div>
+                <div class="side-tab health-tab" id="tab-health" onclick="switchCategory('health')"><div class="tab-icon">💊</div><div class="tab-text">Health</div></div>
             </div>
 
-            <!-- RIGHT PANEL (Untouched Content, Still Linked) -->
+            <!-- RIGHT PANEL -->
             <div class="right-panel">
                 
                 <!-- 1. PROMOS -->
@@ -182,6 +183,7 @@
                 <div id="content-sos" class="content-section">
                     <div class="section-header" style="color: #ef4444;">Emergency (SOS)</div>
                     <div class="sub-grid">
+                        <!-- Auto Syncing Cross Repo Working Links -->
                         <div class="sub-card view-all-card sos-all-card" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-profile/emergency-sos.html'">
                             <div class="sub-icon">➜</div><div class="sub-text">Open Main<br>SOS Hub</div>
                         </div>
@@ -295,7 +297,10 @@
         // 🎨 DYNAMIC COLOR THEMES ENGINE
         const sectionThemes = {
             'offers': { light: 'linear-gradient(135deg, rgba(255, 237, 213, 0.95), rgba(254, 240, 138, 0.95))', dark: 'linear-gradient(135deg, rgba(253, 186, 116, 0.15), rgba(250, 204, 21, 0.15))' }, 
-            'sos': { light: 'linear-gradient(135deg, rgba(254, 226, 226, 0.95), rgba(254, 202, 202, 0.95))', dark: 'linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.15))' }, 
+            
+            /* 🔥 SOS FIX: Deep Vibrant Red Theme on Header */
+            'sos': { light: 'linear-gradient(135deg, rgba(239, 68, 68, 0.9), rgba(185, 28, 28, 0.9))', dark: 'linear-gradient(135deg, rgba(185, 28, 28, 0.8), rgba(127, 29, 29, 0.9))' }, 
+            
             'news': { light: 'linear-gradient(135deg, rgba(224, 242, 254, 0.95), rgba(186, 230, 253, 0.95))', dark: 'linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(14, 165, 233, 0.15))' }, 
             'entertainment': { light: 'linear-gradient(135deg, rgba(243, 232, 255, 0.95), rgba(233, 213, 255, 0.95))', dark: 'linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(147, 51, 234, 0.15))' }, 
             'daily': { light: 'linear-gradient(135deg, rgba(209, 250, 229, 0.95), rgba(167, 243, 208, 0.95))', dark: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.15))' }, 
@@ -314,11 +319,4 @@
             setTimeout(() => {
                 const topbar = document.querySelector('city-topbar');
                 if (topbar && topbar.firstElementChild) {
-                    topbar.firstElementChild.style.setProperty('background', 'transparent', 'important');
-                    topbar.firstElementChild.style.setProperty('border', 'none', 'important');
-                }
-            }, 100);
-        });
-
-        function switchCategory(categoryId, element) {
-            document.querySelectorAll('.sid
+                    topbar.firstElementChild.style.setProp
