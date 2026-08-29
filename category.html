@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CityPulse - Categories</title>
-    <!-- Core Global Design System -->
     <link rel="stylesheet" href="https://anupsharmasharma012-debug.github.io/citypulse-core/style.css">
     <style>
         /* TOPBAR FIX */
         city-topbar { display: block; }
         city-topbar > div { background: transparent !important; border-bottom: none !important; box-shadow: none !important; }
 
-        /* 🔥 PREMIUM DYNAMIC HEADER (GPU Blur Filter Restored!) */
+        /* 🔥 PREMIUM HEADER (GPU Blur Filter Restored) */
         .top-gradient-bg {
             position: sticky; 
             top: 0; 
             z-index: 100;
             background: linear-gradient(135deg, rgba(255, 237, 213, 0.95) 0%, rgba(254, 240, 138, 0.95) 100%);
-            backdrop-filter: blur(12px); /* The Magic Glass Effect */
+            backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             transition: background 0.4s ease-in-out;
@@ -32,7 +31,7 @@
         .search-input { flex: 1; border: none; background: transparent; outline: none; color: var(--text-main); font-size: 13px; margin-left: 10px; font-weight: 600; }
         .search-input::placeholder { color: var(--text-muted); }
 
-        /* FIXED LAYOUT: Anti-Freeze Scrolling */
+        /* FIXED LAYOUT */
         .split-layout { display: flex; height: calc(100vh - 120px); position: relative; z-index: 10; overflow: hidden; background: var(--bg-color); }
 
         /* LEFT PANEL */
@@ -70,10 +69,11 @@
         .side-tab.promo-tab .tab-icon { background: rgba(234, 88, 12, 0.15); }
         .side-tab.promo-tab.active { background: rgba(234, 88, 12, 0.15); border-left-color: #ea580c; }
 
+        /* 🚨 SOLID DEEP RED SOS FIX (Using !important to guarantee color) */
         .side-tab.sos-tab { background: rgba(239, 68, 68, 0.08); color: #dc2626; }
         .side-tab.sos-tab .tab-icon { background: rgba(239, 68, 68, 0.2); }
-        .side-tab.sos-tab.active { background: #ef4444; color: #ffffff; border-left-color: #991b1b; } 
-        .side-tab.sos-tab.active .tab-icon { background: rgba(255, 255, 255, 0.25); color: #ffffff; }
+        .side-tab.sos-tab.active { background: #dc2626 !important; color: #ffffff !important; border-left-color: #991b1b !important; } 
+        .side-tab.sos-tab.active .tab-icon { background: rgba(255, 255, 255, 0.3) !important; color: #ffffff !important; }
 
         .side-tab.news-tab { background: rgba(59, 130, 246, 0.05); color: #2563eb; }
         .side-tab.news-tab .tab-icon { background: rgba(59, 130, 246, 0.15); }
@@ -143,23 +143,12 @@
         .sos-all-card .sub-icon { color: #ef4444; background: rgba(239, 68, 68, 0.15); }
         .sos-all-card .sub-text { color: #ef4444; }
 
-        /* SAFE TOAST (Prevents Freezing) */
+        /* SAFE TOAST */
         #custom-toast {
-            position: fixed;
-            bottom: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1f2937;
-            color: #ffffff;
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 600;
-            z-index: 9999;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: bottom 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            pointer-events: none;
-            white-space: nowrap;
+            position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%);
+            background: #1f2937; color: #ffffff; padding: 12px 24px; border-radius: 30px;
+            font-size: 12px; font-weight: 600; z-index: 9999; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: bottom 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); pointer-events: none; white-space: nowrap;
         }
         #custom-toast.show { bottom: 80px; }
     </style>
@@ -179,16 +168,16 @@
 
         <main class="split-layout">
             
-            <!-- LEFT PANEL -->
+            <!-- LEFT PANEL (Using Data Attributes instead of onclick for bulletproof execution) -->
             <div class="left-panel">
-                <div class="side-tab promo-tab active" id="tab-offers" onclick="switchCategory('offers')"><div class="tab-icon">🔥</div><div class="tab-text">Promos</div></div>
-                <div class="side-tab sos-tab" id="tab-sos" onclick="switchCategory('sos')"><div class="tab-icon">🚨</div><div class="tab-text">SOS</div></div>
-                <div class="side-tab news-tab" id="tab-news" onclick="switchCategory('news')"><div class="tab-icon">📰</div><div class="tab-text">News</div></div>
-                <div class="side-tab ent-tab" id="tab-entertainment" onclick="switchCategory('entertainment')"><div class="tab-icon">🎬</div><div class="tab-text">Entertain</div></div>
-                <div class="side-tab daily-tab" id="tab-daily" onclick="switchCategory('daily')"><div class="tab-icon">🛒</div><div class="tab-text">Groceries</div></div>
-                <div class="side-tab serv-tab" id="tab-services" onclick="switchCategory('services')"><div class="tab-icon">🔌</div><div class="tab-text">Services</div></div>
-                <div class="side-tab trans-tab" id="tab-transport" onclick="switchCategory('transport')"><div class="tab-icon">🛺</div><div class="tab-text">Transport</div></div>
-                <div class="side-tab health-tab" id="tab-health" onclick="switchCategory('health')"><div class="tab-icon">💊</div><div class="tab-text">Health</div></div>
+                <div class="side-tab promo-tab active" data-target="offers"><div class="tab-icon">🔥</div><div class="tab-text">Promos</div></div>
+                <div class="side-tab sos-tab" data-target="sos"><div class="tab-icon">🚨</div><div class="tab-text">SOS</div></div>
+                <div class="side-tab news-tab" data-target="news"><div class="tab-icon">📰</div><div class="tab-text">News</div></div>
+                <div class="side-tab ent-tab" data-target="entertainment"><div class="tab-icon">🎬</div><div class="tab-text">Entertain</div></div>
+                <div class="side-tab daily-tab" data-target="daily"><div class="tab-icon">🛒</div><div class="tab-text">Groceries</div></div>
+                <div class="side-tab serv-tab" data-target="services"><div class="tab-icon">🔌</div><div class="tab-text">Services</div></div>
+                <div class="side-tab trans-tab" data-target="transport"><div class="tab-icon">🛺</div><div class="tab-text">Transport</div></div>
+                <div class="side-tab health-tab" data-target="health"><div class="tab-icon">💊</div><div class="tab-text">Health</div></div>
             </div>
 
             <!-- RIGHT PANEL -->
@@ -340,4 +329,8 @@
             'daily': { light: 'linear-gradient(135deg, rgba(209, 250, 229, 0.95), rgba(167, 243, 208, 0.95))', dark: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.15))' }, 
             'services': { light: 'linear-gradient(135deg, rgba(255, 237, 213, 0.95), rgba(253, 186, 116, 0.95))', dark: 'linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15))' }, 
             'transport': { light: 'linear-gradient(135deg, rgba(254, 249, 195, 0.95), rgba(253, 224, 71, 0.95))', dark: 'linear-gradient(135deg, rgba(234, 179, 8, 0.15), rgba(202, 138, 4, 0.15))' }, 
-            'heal
+            'health': { light: 'linear-gradient(135deg, rgba(204, 251, 241, 0.95), rgba(153, 246, 228, 0.95))', dark: 'linear-gradient(135deg, rgba(20, 184, 166, 0.15), rgba(13, 148, 136, 0.15))' } 
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('cp_th
