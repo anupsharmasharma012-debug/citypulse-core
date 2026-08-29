@@ -4,59 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CityPulse - Home</title>
-    <!-- Master CSS -->
+    <!-- Core Global Design System -->
     <link rel="stylesheet" href="https://anupsharmasharma012-debug.github.io/citypulse-core/style.css">
+    <style>
+        /* Home Specific Styles */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--accent-blue), #1d4ed8);
+            border-radius: 16px;
+            padding: 20px;
+            color: white;
+            margin: 16px;
+            box-shadow: 0 10px 20px rgba(37,99,235,0.15);
+        }
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            padding: 0 16px;
+            margin-bottom: 16px;
+        }
+        .quick-item {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 12px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .quick-item:active { transform: scale(0.95); }
+        .section-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin: 20px 16px 10px 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
 </head>
 <body>
     <div class="max-width-container">
-        <!-- Smart Header -->
-        <city-header></city-header>
+        
+        <!-- SMART TOPBAR WITH LOCATION, WEATHER & NOTIFICATION BELL -->
+        <city-topbar home-header></city-topbar>
 
-        <main style="padding: 10px 16px; display: flex; flex-direction: column; margin-bottom: 80px;">
-            <!-- Dynamic Ad Space -->
+        <!-- MAIN CONTENT AREA -->
+        <main style="margin-bottom: 90px;">
+            
+            <!-- HERO PROMO BANNER -->
+            <div class="hero-banner">
+                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; opacity: 0.9; margin-bottom: 4px;">Welcome to Bhatpara</div>
+                <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 8px;">Your City, In Your Pocket 🚀</h2>
+                <p style="font-size: 12px; opacity: 0.9; line-height: 1.4;">Discover local shops, services, trusted news, and emergency assistance instantly.</p>
+            </div>
+
+            <!-- QUICK SERVICE GRID -->
+            <div class="section-title">Quick Services</div>
+            <div class="quick-grid">
+                <div class="quick-item" onclick="window.location.href='category.html'">
+                    <div style="font-size: 24px; margin-bottom: 6px;">🛍️</div>
+                    <div style="font-size: 11px; font-weight: 700; color: var(--text-main);">Market</div>
+                </div>
+                <div class="quick-item" onclick="window.location.href='search.html'">
+                    <div style="font-size: 24px; margin-bottom: 6px;">🧭</div>
+                    <div style="font-size: 11px; font-weight: 700; color: var(--text-main);">Explore</div>
+                </div>
+                <div class="quick-item" onclick="showToast('Civic Services Module Coming Soon')">
+                    <div style="font-size: 24px; margin-bottom: 6px;">🏛️</div>
+                    <div style="font-size: 11px; font-weight: 700; color: var(--text-main);">Civic</div>
+                </div>
+                <div class="quick-item" onclick="window.location.href='emergency-sos.html'">
+                    <div style="font-size: 24px; margin-bottom: 6px;">🚨</div>
+                    <div style="font-size: 11px; font-weight: 700; color: var(--accent-red);">SOS</div>
+                </div>
+            </div>
+
+            <!-- RECENT FEED / AD SPACE -->
+            <div class="section-title">Local Updates & Offers</div>
             <city-ad-space></city-ad-space>
 
-            <!-- Deep Content: Welcome & Quick Actions -->
-            <div class="cp-card flex-column gap-3">
-                <h2 style="margin: 0; font-size: 18px;">Welcome to CityPulse</h2>
-                <p style="margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.5;">
-                    Aapka apna Super App. Explore local news, raise civic issues, and connect with your local marketplace.
-                </p>
-                <div class="d-flex gap-2" style="margin-top: 10px;">
-                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-media-civic/civic.html" class="cp-btn-primary">Raise Complaint</a>
-                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-profile/profile.html" class="cp-btn-outline">My Profile</a>
+            <div class="cp-card flex-column gap-2" style="margin: 0 16px;">
+                <div class="d-flex gap-3 align-items-center">
+                    <span style="font-size: 28px;">📢</span>
+                    <div>
+                        <div style="font-size: 13px; font-weight: 700;">Ward No. 12 Electricity Maintenance</div>
+                        <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Power shutdown scheduled tomorrow between 10 AM - 2 PM.</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Deep Content: Upcoming Features Section -->
-            <div class="cp-card">
-                <div class="flex-between" style="margin-bottom: 12px;">
-                    <h3 style="margin: 0; font-size: 15px;">Local Services (Coming Soon)</h3>
-                    <span class="cp-badge-success">Hyperlocal</span>
-                </div>
-                <div class="d-flex gap-3" style="overflow-x: auto; padding-bottom: 5px;">
-                    <div style="background: rgba(150,150,150,0.05); border: 1px solid var(--card-border); padding: 12px; border-radius: 12px; min-width: 100px; text-align: center;">
-                        <div style="font-size: 24px; margin-bottom: 5px;">🛒</div>
-                        <div style="font-size: 11px; font-weight: 600;">Marketplace</div>
-                    </div>
-                    <div style="background: rgba(150,150,150,0.05); border: 1px solid var(--card-border); padding: 12px; border-radius: 12px; min-width: 100px; text-align: center;">
-                        <div style="font-size: 24px; margin-bottom: 5px;">🚕</div>
-                        <div style="font-size: 11px; font-weight: 600;">Mobility</div>
-                    </div>
-                </div>
-            </div>
         </main>
 
-        <!-- Smart Bottom Nav -->
+        <!-- GLOBAL BOTTOM NAVIGATION -->
         <bottom-nav></bottom-nav>
     </div>
 
-    <!-- The Master Engine: Core Scripts -->
+    <!-- CORE SCRIPTS -->
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/config.js"></script>
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/store.js"></script>
-    <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/utils.js"></script>
-    <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/auth-guard.js"></script>
-    <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/api.js"></script>
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/components.js"></script>
+    <script>
+        // Global Theme Synchronization
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('cp_theme') || 'light';
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+    </script>
 </body>
 </html>
