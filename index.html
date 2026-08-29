@@ -6,19 +6,37 @@
     <title>CityPulse - Home</title>
     <link rel="stylesheet" href="https://anupsharmasharma012-debug.github.io/citypulse-core/style.css">
     <style>
-        /* Horizontal Scroll Menu Styles */
+        /* DYNAMIC BACKGROUND (Covers Topbar to Banner) */
+        #dynamic-header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 480px;
+            z-index: 0;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            border-bottom-left-radius: 32px;
+            border-bottom-right-radius: 32px;
+            transition: background 0.6s ease-in-out;
+        }
+
+        /* AMAZON STYLE HORIZONTAL MENU (Floating Glass Card) */
+        .horizontal-scroll-container {
+            background: var(--card-bg);
+            border-radius: 16px;
+            margin: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
         .horizontal-scroll {
             display: flex;
             overflow-x: auto;
             gap: 16px;
-            padding: 20px 16px;
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE and Edge */
-            background: var(--bg-color);
+            padding: 16px;
+            scrollbar-width: none;
         }
-        .horizontal-scroll::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
-        }
+        .horizontal-scroll::-webkit-scrollbar { display: none; }
         .scroll-item {
             display: flex;
             flex-direction: column;
@@ -38,111 +56,133 @@
             align-items: center;
             font-size: 26px;
         }
-        .icon-label {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--text-main);
-            text-align: center;
-            letter-spacing: 0.2px;
+        .icon-label { font-size: 11px; font-weight: 700; color: var(--text-main); text-align: center; }
+
+        /* 3D HERO BANNER CAROUSEL */
+        .banner-carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 0 16px 20px 16px;
+            gap: 12px;
+            position: relative;
+            z-index: 2;
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+        }
+        .banner-carousel::-webkit-scrollbar { display: none; }
+        .banner-card {
+            min-width: 88%;
+            scroll-snap-align: center;
+            border-radius: 18px;
+            padding: 24px;
+            color: white;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+            transform: scale(0.9);
+            opacity: 0.5;
+            /* Premium Glassmorphism Look for Banners */
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        .banner-card.active-3d {
+            transform: scale(1);
+            opacity: 1;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
 
-        /* Home Specific Styles (Purana code safe hai) */
-        .hero-banner {
-            background: linear-gradient(135deg, var(--accent-blue), #1d4ed8);
-            border-radius: 16px;
-            padding: 20px;
-            color: white;
-            margin: 0 16px 16px 16px; /* Adjusted margin */
-            box-shadow: 0 10px 20px rgba(37,99,235,0.15);
-        }
-        .quick-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            padding: 0 16px;
-            margin-bottom: 16px;
-        }
-        .quick-item {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 14px;
-            padding: 12px 8px;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
+        /* Purana Quick Grid & Sections */
+        .quick-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 0 16px; margin-bottom: 16px; position: relative; z-index: 2; }
+        .quick-item { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 12px 8px; text-align: center; cursor: pointer; transition: transform 0.2s; }
         .quick-item:active { transform: scale(0.95); }
-        .section-title {
-            font-size: 14px;
-            font-weight: 800;
-            color: var(--text-main);
-            margin: 20px 16px 10px 16px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+        .section-title { font-size: 14px; font-weight: 800; color: var(--text-main); margin: 20px 16px 10px 16px; text-transform: uppercase; position: relative; z-index: 2; }
     </style>
 </head>
 <body>
     <div class="max-width-container">
         
-        <!-- SMART TOPBAR WITH LOCATION, WEATHER & NOTIFICATION BELL -->
+        <!-- DYNAMIC BACKGROUND LAYER -->
+        <div id="dynamic-header-bg"></div>
+
+        <!-- TOPBAR -->
         <city-topbar home-header></city-topbar>
 
-        <!-- MAIN CONTENT AREA -->
         <main style="margin-bottom: 90px;">
             
-            <!-- NEW: AMAZON STYLE HORIZONTAL SCROLLING MENU -->
-            <div class="horizontal-scroll">
-                <!-- 1. Emergency (Light Red) -->
-                <div class="scroll-item" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-profile/emergency-sos.html'">
-                    <div class="icon-box" style="background-color: rgba(239, 68, 68, 0.15);">🚨</div>
-                    <span class="icon-label">Emergency</span>
-                </div>
-                <!-- 2. Pay (Light Blue) -->
-                <div class="scroll-item" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-profile/wallet.html'">
-                    <div class="icon-box" style="background-color: rgba(59, 130, 246, 0.15);">💳</div>
-                    <span class="icon-label">Pay</span>
-                </div>
-                <!-- 3. Ride (Light Yellow/Amber) -->
-                <div class="scroll-item" onclick="showToast('Ride module coming soon')">
-                    <div class="icon-box" style="background-color: rgba(245, 158, 11, 0.15);">🛵</div>
-                    <span class="icon-label">Ride</span>
-                </div>
-                <!-- 4. Grocery (Light Green) -->
-                <div class="scroll-item" onclick="window.location.href='category.html'">
-                    <div class="icon-box" style="background-color: rgba(16, 185, 129, 0.15);">🛒</div>
-                    <span class="icon-label">Grocery</span>
-                </div>
-                <!-- 5. Medical (Light Indigo) -->
-                <div class="scroll-item" onclick="showToast('Medical module coming soon')">
-                    <div class="icon-box" style="background-color: rgba(99, 102, 241, 0.15);">💊</div>
-                    <span class="icon-label">Medical</span>
-                </div>
-                <!-- 6. Entertainment (Light Pink/Fuchsia) -->
-                <div class="scroll-item" onclick="showToast('Entertainment coming soon')">
-                    <div class="icon-box" style="background-color: rgba(217, 70, 239, 0.15);">🎬</div>
-                    <span class="icon-label">Entertain</span>
-                </div>
-                <!-- 7. Services (Light Orange) -->
-                <div class="scroll-item" onclick="window.location.href='category.html'">
-                    <div class="icon-box" style="background-color: rgba(249, 115, 22, 0.15);">🛠️</div>
-                    <span class="icon-label">Services</span>
-                </div>
-                <!-- 8. Education (Light Purple) -->
-                <div class="scroll-item" onclick="showToast('Education module coming soon')">
-                    <div class="icon-box" style="background-color: rgba(168, 85, 247, 0.15);">📚</div>
-                    <span class="icon-label">Education</span>
+            <!-- AMAZON STYLE HORIZONTAL MENU -->
+            <div class="horizontal-scroll-container">
+                <div class="horizontal-scroll">
+                    <div class="scroll-item" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-profile/emergency-sos.html'">
+                        <div class="icon-box" style="background-color: rgba(239, 68, 68, 0.15);">🚨</div>
+                        <span class="icon-label">Emergency</span>
+                    </div>
+                    <div class="scroll-item" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-profile/wallet.html'">
+                        <div class="icon-box" style="background-color: rgba(59, 130, 246, 0.15);">💳</div>
+                        <span class="icon-label">Pay</span>
+                    </div>
+                    <div class="scroll-item" onclick="showToast('Ride module coming soon')">
+                        <div class="icon-box" style="background-color: rgba(245, 158, 11, 0.15);">🛵</div>
+                        <span class="icon-label">Ride</span>
+                    </div>
+                    <div class="scroll-item" onclick="window.location.href='category.html'">
+                        <div class="icon-box" style="background-color: rgba(16, 185, 129, 0.15);">🛒</div>
+                        <span class="icon-label">Grocery</span>
+                    </div>
+                    <div class="scroll-item" onclick="showToast('Medical module coming soon')">
+                        <div class="icon-box" style="background-color: rgba(99, 102, 241, 0.15);">💊</div>
+                        <span class="icon-label">Medical</span>
+                    </div>
+                    <div class="scroll-item" onclick="showToast('Entertainment coming soon')">
+                        <div class="icon-box" style="background-color: rgba(217, 70, 239, 0.15);">🎬</div>
+                        <span class="icon-label">Entertain</span>
+                    </div>
+                    <div class="scroll-item" onclick="window.location.href='category.html'">
+                        <div class="icon-box" style="background-color: rgba(249, 115, 22, 0.15);">🛠️</div>
+                        <span class="icon-label">Services</span>
+                    </div>
+                    <div class="scroll-item" onclick="showToast('Education module coming soon')">
+                        <div class="icon-box" style="background-color: rgba(168, 85, 247, 0.15);">📚</div>
+                        <span class="icon-label">Education</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- HERO PROMO BANNER (Purana wala, intact hai) -->
-            <div class="hero-banner">
-                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; opacity: 0.9; margin-bottom: 4px;">Welcome to Bhatpara</div>
-                <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 8px;">Your City, In Your Pocket 🚀</h2>
-                <p style="font-size: 12px; opacity: 0.9; line-height: 1.4;">Discover local shops, services, trusted news, and emergency assistance instantly.</p>
+            <!-- NEW: 3D DYNAMIC BANNER CAROUSEL -->
+            <div class="banner-carousel" id="3d-carousel">
+                
+                <!-- 1. Local Network (Blue Theme) -->
+                <div class="banner-card active-3d" data-theme="linear-gradient(135deg, #2563eb 0%, #1e40af 100%)">
+                    <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; opacity: 0.9; margin-bottom: 6px; letter-spacing: 0.5px;">Local Network</div>
+                    <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Bhatpara Updates 📢</h2>
+                    <p style="font-size: 13px; opacity: 0.95; line-height: 1.4;">Stay connected with local FB channels and neighborhood alerts instantly.</p>
+                </div>
+                
+                <!-- 2. Live Channel (Red Theme) -->
+                <div class="banner-card" data-theme="linear-gradient(135deg, #e11d48 0%, #9f1239 100%)">
+                    <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; opacity: 0.9; margin-bottom: 6px; letter-spacing: 0.5px;">Now Streaming</div>
+                    <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Live Channels 🔴</h2>
+                    <p style="font-size: 13px; opacity: 0.95; line-height: 1.4;">Watch your favorite live broadcasts and breaking news anytime.</p>
+                </div>
+
+                <!-- 3. Top Headlines (Teal/Green Theme) -->
+                <div class="banner-card" data-theme="linear-gradient(135deg, #0d9488 0%, #115e59 100%)">
+                    <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; opacity: 0.9; margin-bottom: 6px; letter-spacing: 0.5px;">Trending Now</div>
+                    <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Top Headlines 📰</h2>
+                    <p style="font-size: 13px; opacity: 0.95; line-height: 1.4;">Daily catch-up on national and global top stories curated for you.</p>
+                </div>
+
+                <!-- 4. Entertainment (Purple Theme) -->
+                <div class="banner-card" data-theme="linear-gradient(135deg, #9333ea 0%, #6b21a8 100%)">
+                    <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; opacity: 0.9; margin-bottom: 6px; letter-spacing: 0.5px;">Chill & Relax</div>
+                    <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Entertainment 🍿</h2>
+                    <p style="font-size: 13px; opacity: 0.95; line-height: 1.4;">Movies, shows, and viral content to make your day better.</p>
+                </div>
+
             </div>
 
-            <!-- QUICK SERVICE GRID (Purana wala, intact hai) -->
+            <!-- QUICK SERVICE GRID -->
             <div class="section-title">Quick Links</div>
             <div class="quick-grid">
                 <div class="quick-item" onclick="window.location.href='category.html'">
@@ -167,7 +207,7 @@
             <div class="section-title">Local Updates & Offers</div>
             <city-ad-space></city-ad-space>
 
-            <div class="cp-card flex-column gap-2" style="margin: 0 16px;">
+            <div class="cp-card flex-column gap-2" style="margin: 0 16px; position: relative; z-index: 2;">
                 <div class="d-flex gap-3 align-items-center">
                     <span style="font-size: 28px;">📢</span>
                     <div>
@@ -179,7 +219,6 @@
 
         </main>
 
-        <!-- GLOBAL BOTTOM NAVIGATION -->
         <bottom-nav></bottom-nav>
     </div>
 
@@ -187,13 +226,50 @@
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/config.js"></script>
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/store.js"></script>
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/components.js"></script>
+    
     <script>
-        // Global Theme Synchronization
+        // Global Theme Check
         window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('cp_theme') || 'light';
-            if (savedTheme === 'dark') {
+            if (localStorage.getItem('cp_theme') === 'dark') {
                 document.body.classList.add('dark-mode');
             }
+
+            // Make Topbar completely transparent so dynamic bg shows through
+            setTimeout(() => {
+                const topbar = document.querySelector('city-topbar');
+                if (topbar && topbar.firstElementChild) {
+                    topbar.firstElementChild.style.setProperty('background', 'transparent', 'important');
+                    topbar.firstElementChild.style.setProperty('box-shadow', 'none', 'important');
+                }
+            }, 100);
+
+            // 3D Carousel & Dynamic Color Sync Logic
+            const carousel = document.getElementById('3d-carousel');
+            const cards = carousel.querySelectorAll('.banner-card');
+            const dynamicBg = document.getElementById('dynamic-header-bg');
+
+            function syncColors() {
+                // Find center point of the carousel
+                let centerPoint = carousel.scrollLeft + (carousel.clientWidth / 2);
+                
+                cards.forEach(card => {
+                    // Find center point of each card
+                    let cardCenter = card.offsetLeft + (card.clientWidth / 2) - carousel.offsetLeft;
+                    
+                    // If card is in the center
+                    if (Math.abs(centerPoint - cardCenter) < (card.clientWidth / 2)) {
+                        cards.forEach(c => c.classList.remove('active-3d')); // Reset all
+                        card.classList.add('active-3d'); // Make current card 3D
+                        
+                        // Change Global Background Theme
+                        let themeColor = card.getAttribute('data-theme');
+                        dynamicBg.style.background = themeColor;
+                    }
+                });
+            }
+
+            carousel.addEventListener('scroll', syncColors);
+            syncColors(); // Initial call
         });
     </script>
 </body>
