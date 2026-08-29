@@ -3,105 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CityPulse - Category Modules</title>
+    <title>CityPulse - Categories</title>
+    <!-- Core Global Design System -->
     <link rel="stylesheet" href="https://anupsharmasharma012-debug.github.io/citypulse-core/style.css">
+    <style>
+        /* Category Specific Styles */
+        .search-container {
+            padding: 16px;
+            background: var(--bg-color);
+            position: sticky;
+            top: 56px; /* Below Topbar */
+            z-index: 90;
+        }
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px 16px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .search-box:focus-within {
+            border-color: var(--accent-blue);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.1);
+        }
+        .search-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            outline: none;
+            color: var(--text-main);
+            font-size: 14px;
+            margin-left: 10px;
+            font-weight: 500;
+        }
+        .search-input::placeholder { color: var(--text-muted); }
+
+        /* Promo Banner */
+        .promo-banner {
+            margin: 0 16px 20px 16px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(52, 211, 153, 0.25) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Category Grid */
+        .section-header {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0 16px 12px 16px;
+        }
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 0 16px;
+            margin-bottom: 24px;
+        }
+        .cat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .cat-card:active { transform: scale(0.96); }
+        .cat-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+        }
+        .cat-title { font-size: 14px; font-weight: 800; color: var(--text-main); }
+        .cat-desc { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+    </style>
 </head>
 <body>
     <div class="max-width-container">
-        <!-- BACK BUTTON HEADER -->
-        <city-topbar title="All Categories"></city-topbar>
+        
+        <!-- CORE TOPBAR -->
+        <city-topbar title="Explore Categories"></city-topbar>
 
-        <!-- NAYA: DEEP CONTEXT BAR (Location & Weather) -->
-        <div class="flex-between" style="padding: 10px 16px; background: var(--bg-color); border-bottom: 1px solid var(--card-border);">
-            <a href="https://anupsharmasharma012-debug.github.io/citypulse-profile/location.html" style="text-decoration: none; display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-main); font-weight: 700; background: rgba(150,150,150,0.1); padding: 6px 12px; border-radius: 20px;">
-                <span>📍</span> Bhatpara (743123)
-            </a>
-            <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #f59e0b; font-weight: 700; background: rgba(245, 158, 11, 0.1); padding: 6px 12px; border-radius: 20px;">
-                <span>🌤️</span> 32°C (AQI: 85)
+        <!-- STICKY SEARCH BAR -->
+        <div class="search-container">
+            <div class="search-box">
+                <span style="color: var(--text-muted); font-size: 18px;">🔍</span>
+                <input type="text" class="search-input" placeholder="Search groceries, doctors, plumbers...">
             </div>
         </div>
 
-        <div style="padding: 10px 16px 0 16px;"><city-ad-space></city-ad-space></div>
-
-        <!-- FULL PAGE PANELS -->
-        <!-- Height adjust ki gayi hai taaki naya bar fit aa sake bina cut huye -->
-        <main style="display: flex; height: calc(100vh - 260px); border-top: 1px solid var(--card-border);">
+        <main style="margin-bottom: 90px;">
             
-            <!-- Left Sidebar -->
-            <div style="width: 100px; background: rgba(150,150,150,0.05); border-right: 1px solid var(--card-border); padding: 10px 6px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;">
-                <button onclick="showPanel('civic')" id="btn-civic" style="width: 100%; text-align: center; padding: 16px 8px; background: rgba(59,130,246,0.15); color: var(--accent-blue); border: none; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px;"><span style="font-size: 20px;">📢</span> Civic</button>
-                <button onclick="showPanel('news')" id="btn-news" style="width: 100%; text-align: center; padding: 16px 8px; background: transparent; color: var(--text-main); border: none; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px;"><span style="font-size: 20px;">📰</span> News</button>
-                <button onclick="showPanel('profile')" id="btn-profile" style="width: 100%; text-align: center; padding: 16px 8px; background: transparent; color: var(--text-main); border: none; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px;"><span style="font-size: 20px;">👤</span> Profile</button>
+            <!-- PROMO BANNER -->
+            <div class="promo-banner">
+                <div style="font-size: 32px; z-index: 2;">🎉</div>
+                <div style="z-index: 2; flex: 1;">
+                    <div style="font-size: 11px; font-weight: 800; color: #059669; text-transform: uppercase; margin-bottom: 4px;">Local Super Savers</div>
+                    <div style="font-size: 16px; font-weight: 800; color: var(--text-main);">Up to 20% Off on Groceries</div>
+                </div>
+                <!-- Background decorative element -->
+                <div style="position: absolute; right: -20px; top: -20px; font-size: 100px; opacity: 0.05;">🛍️</div>
             </div>
 
-            <!-- Right Content Area -->
-            <div style="flex: 1; padding: 16px; overflow-y: auto;">
-                
-                <!-- Civic Panel (DEEP CONTENT) -->
-                <div id="panel-civic" class="flex-column gap-3">
-                    <h3 style="margin: 0; font-size: 16px;">Jan Shikayat Hub</h3>
-                    <p style="margin: 0; font-size: 12px; color: var(--text-muted); line-height: 1.4;">Official portal for municipal services.</p>
-                    <div style="background: rgba(16,185,129,0.1); border: 1px solid var(--accent-green); border-radius: 10px; padding: 10px; display: flex; gap: 10px;">
-                        <span style="font-size: 18px;">✅</span>
-                        <div>
-                            <div style="font-size: 12px; font-weight: 700; color: var(--accent-green);">84% Resolution Rate</div>
-                            <div style="font-size: 10px; color: var(--text-main);">In Bhatpara this month</div>
-                        </div>
+            <!-- SECTION 1: DAILY NEEDS -->
+            <div class="section-header">Daily Needs</div>
+            <div class="cat-grid">
+                <div class="cat-card" onclick="showToast('Loading Grocery Shops...')">
+                    <div class="cat-icon-box" style="background: rgba(16, 185, 129, 0.15);">🛒</div>
+                    <div>
+                        <div class="cat-title">Grocery & Staples</div>
+                        <div class="cat-desc">24+ Local Stores</div>
                     </div>
-                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-media-civic/civic.html" class="cp-btn-primary" style="font-size: 12px; margin-top: 10px;">File a New Issue ↗</a>
                 </div>
-
-                <!-- News Panel (DEEP CONTENT) -->
-                <div id="panel-news" class="flex-column gap-3" style="display: none;">
-                    <h3 style="margin: 0; font-size: 16px;">Local Media</h3>
-                    <p style="margin: 0; font-size: 12px; color: var(--text-muted); line-height: 1.4;">Real-time updates curated for your area.</p>
-                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-media-civic/news.html" class="cp-btn-primary" style="font-size: 12px; margin-top: 5px;">Go to News Feed ↗</a>
-                    <h4 style="margin: 10px 0 0 0; font-size: 13px;">Trending Topics</h4>
-                    <span style="font-size: 12px; padding: 6px 12px; background: rgba(150,150,150,0.1); border-radius: 16px; display: inline-block;">#BhatparaElections</span>
-                    <span style="font-size: 12px; padding: 6px 12px; background: rgba(150,150,150,0.1); border-radius: 16px; display: inline-block;">#HighwayProject</span>
-                </div>
-
-                <!-- Profile Panel (DEEP CONTENT) -->
-                <div id="panel-profile" class="flex-column gap-3" style="display: none;">
-                    <h3 style="margin: 0; font-size: 16px;">Account Overview</h3>
-                    <p style="margin: 0; font-size: 12px; color: var(--text-muted); line-height: 1.4;">Quick summary of your CityPulse account.</p>
-                    <div class="cp-card flex-between" style="padding: 10px; margin: 0;">
-                        <div class="d-flex gap-2 align-items-center">
-                            <span style="font-size: 20px;">🛡️</span>
-                            <div>
-                                <div style="font-size: 13px; font-weight: 700;">KYC Status</div>
-                                <div style="font-size: 11px; color: var(--text-muted);">Verified User</div>
-                            </div>
-                        </div>
-                        <span class="cp-badge-success">Done</span>
+                <div class="cat-card" onclick="showToast('Loading Pharmacies...')">
+                    <div class="cat-icon-box" style="background: rgba(239, 68, 68, 0.15);">💊</div>
+                    <div>
+                        <div class="cat-title">Medical & Pharma</div>
+                        <div class="cat-desc">12+ Pharmacies</div>
                     </div>
-                    <a href="https://anupsharmasharma012-debug.github.io/citypulse-profile/profile.html" class="cp-btn-primary" style="font-size: 12px; margin-top: 10px;">Manage Full Profile ↗</a>
                 </div>
-
+                <div class="cat-card" onclick="showToast('Loading Fresh Veggies...')">
+                    <div class="cat-icon-box" style="background: rgba(245, 158, 11, 0.15);">🥬</div>
+                    <div>
+                        <div class="cat-title">Fresh Veggies</div>
+                        <div class="cat-desc">Direct from Mandi</div>
+                    </div>
+                </div>
+                <div class="cat-card" onclick="showToast('Loading Dairy...')">
+                    <div class="cat-icon-box" style="background: rgba(59, 130, 246, 0.15);">🥛</div>
+                    <div>
+                        <div class="cat-title">Milk & Dairy</div>
+                        <div class="cat-desc">Morning Delivery</div>
+                    </div>
+                </div>
             </div>
+
+            <!-- SECTION 2: LOCAL SERVICES -->
+            <div class="section-header">Local Services</div>
+            <div class="cat-grid">
+                <div class="cat-card" onclick="showToast('Loading Electricians...')">
+                    <div class="cat-icon-box" style="background: rgba(249, 115, 22, 0.15);">🔌</div>
+                    <div>
+                        <div class="cat-title">Electricians</div>
+                        <div class="cat-desc">Repairs & Wiring</div>
+                    </div>
+                </div>
+                <div class="cat-card" onclick="showToast('Loading Plumbers...')">
+                    <div class="cat-icon-box" style="background: rgba(6, 182, 212, 0.15);">🚰</div>
+                    <div>
+                        <div class="cat-title">Plumbers</div>
+                        <div class="cat-desc">Pipes & Fittings</div>
+                    </div>
+                </div>
+                <div class="cat-card" onclick="showToast('Loading AC Repair...')">
+                    <div class="cat-icon-box" style="background: rgba(99, 102, 241, 0.15);">❄️</div>
+                    <div>
+                        <div class="cat-title">AC Servicing</div>
+                        <div class="cat-desc">Cooling & Gas</div>
+                    </div>
+                </div>
+                <div class="cat-card" onclick="showToast('Loading Beauty Services...')">
+                    <div class="cat-icon-box" style="background: rgba(236, 72, 153, 0.15);">✂️</div>
+                    <div>
+                        <div class="cat-title">Salon & Beauty</div>
+                        <div class="cat-desc">At Home / Shop</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: RIDE & TRAVEL -->
+            <div class="section-header">Transport & Auto</div>
+            <div class="cat-grid">
+                <div class="cat-card" onclick="showToast('Loading Auto Rickshaws...')">
+                    <div class="cat-icon-box" style="background: rgba(234, 179, 8, 0.15);">🛺</div>
+                    <div>
+                        <div class="cat-title">Auto Rickshaw</div>
+                        <div class="cat-desc">Book Local Ride</div>
+                    </div>
+                </div>
+                <div class="cat-card" onclick="showToast('Loading Mechanics...')">
+                    <div class="cat-icon-box" style="background: rgba(107, 114, 128, 0.15);">🔧</div>
+                    <div>
+                        <div class="cat-title">Bike Mechanic</div>
+                        <div class="cat-desc">Puncture & Repair</div>
+                    </div>
+                </div>
+            </div>
+
         </main>
+
+        <!-- GLOBAL BOTTOM NAVIGATION -->
         <bottom-nav></bottom-nav>
     </div>
 
-    <!-- Panel Switching Logic -->
-    <script>
-        function showPanel(type) {
-            document.getElementById('panel-civic').style.display = type === 'civic' ? 'flex' : 'none';
-            document.getElementById('panel-news').style.display = type === 'news' ? 'flex' : 'none';
-            document.getElementById('panel-profile').style.display = type === 'profile' ? 'flex' : 'none';
-
-            ['civic', 'news', 'profile'].forEach(t => {
-                let btn = document.getElementById('btn-' + t);
-                if(t === type) {
-                    btn.style.background = 'rgba(59,130,246,0.15)'; btn.style.color = 'var(--accent-blue)';
-                } else {
-                    btn.style.background = 'transparent'; btn.style.color = 'var(--text-main)';
-                }
-            });
-        }
-    </script>
+    <!-- CORE SCRIPTS -->
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/config.js"></script>
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/store.js"></script>
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/components.js"></script>
+    
+    <script>
+        // Global Theme Check
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('cp_theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
+        // Simple Toast helper for demo
+        function showToast(msg) {
+            alert(msg); // You can replace this with your custom toast logic later
+        }
+    </script>
 </body>
 </html>
