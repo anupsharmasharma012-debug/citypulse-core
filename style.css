@@ -1,133 +1,58 @@
-/* CityPulse Master Design System */
+/* ==========================================
+   CITYPULSE CORE DESIGN SYSTEM (FIXED)
+   ================================---------- */
 
-/* 1. Global Theme Variables */
 :root {
-    --bg-color: #0d1117;
-    --card-bg: #161b22;
-    --card-border: #222b3d;
-    --text-main: #ffffff;
-    --text-muted: #94a3b8;
-    --accent-blue: #3b82f6;
-    --accent-green: #10b981;
-    --accent-red: #ef4444;
-    --nav-bg: rgba(13, 17, 23, 0.95);
-    --header-bg: rgba(19, 24, 36, 0.9);
-}
-
-[data-theme="light"] {
     --bg-color: #f8fafc;
     --card-bg: #ffffff;
-    --card-border: #cbd5e1;
     --text-main: #0f172a;
-    --text-muted: #475569;
-    --nav-bg: rgba(255, 255, 255, 0.95);
-    --header-bg: rgba(255, 255, 255, 0.9);
+    --text-muted: #64748b;
+    --card-border: #e2e8f0;
+    --accent-blue: #2563eb;
+    --accent-green: #10b981;
+    --accent-red: #ef4444;
 }
 
+/* Global Dark Mode Override Class */
+body.dark-mode {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --card-border: #334155;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+
 body {
-    background-color: var(--bg-color) !important;
-    color: var(--text-main) !important;
-    margin: 0;
-    font-family: system-ui, -apple-system, sans-serif;
-    transition: background-color 0.3s, color 0.3s;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
 }
 
 .max-width-container {
+    width: 100%;
     max-width: 480px;
-    margin: 0 auto;
-    position: relative;
-    min-height: 100vh;
     background-color: var(--bg-color);
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    min-height: 100vh;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
 }
 
-/* 2. Master Component Classes */
 .cp-card {
-    background: var(--card-bg);
+    background-color: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 16px;
+    border-radius: 12px;
     padding: 16px;
-    margin-bottom: 16px;
-}
-
-.cp-btn-primary {
-    background: var(--accent-blue);
-    color: #ffffff;
-    border: none;
-    border-radius: 10px;
-    padding: 12px 16px;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    width: 100%;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    box-sizing: border-box;
-}
-
-.cp-btn-outline {
-    background: transparent;
+    margin: 10px 16px;
     color: var(--text-main);
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
-    padding: 12px 16px;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    width: 100%;
-    text-align: center;
 }
 
-.cp-input {
-    width: 100%;
-    background: var(--bg-color);
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
-    padding: 12px;
-    color: var(--text-main);
-    outline: none;
-    font-size: 14px;
-    box-sizing: border-box;
-    margin-top: 6px;
-}
-
-.cp-badge-success {
-    background: rgba(16, 185, 129, 0.1);
-    color: var(--accent-green);
-    padding: 3px 8px;
-    border-radius: 6px;
-    font-size: 11px;
-    font-weight: 600;
-}
-
-/* Flexbox Utilities (Layout control) */
-.d-flex { display: flex; }
 .flex-between { display: flex; justify-content: space-between; align-items: center; }
-.flex-column { display: flex; flex-direction: column; }
+.d-flex { display: flex; }
 .gap-2 { gap: 8px; }
 .gap-3 { gap: 12px; }
-.gap-4 { gap: 16px; }
-
-/* 3. Global Loader & Toast Styles */
-.cp-loader-overlay {
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.7);
-    display: none; justify-content: center; align-items: center;
-    z-index: 9999; backdrop-filter: blur(5px);
-}
-.cp-spinner {
-    width: 40px; height: 40px;
-    border: 4px solid var(--card-border);
-    border-top: 4px solid var(--accent-blue);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-.cp-toast {
-    position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
-    background: var(--accent-green); color: #fff;
-    padding: 10px 20px; border-radius: 20px; font-size: 13px; font-weight: 600;
-    display: none; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
+.align-items-center { align-items: center; }
