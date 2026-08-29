@@ -1,4 +1,4 @@
-// Cross-Repo Base URLs (Isse navigation kabhi nahi tutega)
+// Cross-Repo Base URLs (Navigation hamesha safe rahegi)
 const CORE_URL = 'https://anupsharmasharma012-debug.github.io/citypulse-core';
 const PROFILE_URL = 'https://anupsharmasharma012-debug.github.io/citypulse-profile';
 
@@ -9,40 +9,46 @@ class CityTopbar extends HTMLElement {
         const showHomeElements = this.hasAttribute('home-header');
         const isDark = localStorage.getItem('cp_theme') === 'dark';
         
-        const bgColor = isDark ? '#1e293b' : '#ffffff';
-        const textColor = isDark ? '#f8fafc' : '#0f172a';
-        const borderColor = isDark ? '#334155' : '#e2e8f0';
+        // Default Clean Theme for other pages
+        let bgColor = isDark ? '#1e293b' : '#ffffff';
+        let textColor = isDark ? '#f8fafc' : '#0f172a';
+        let borderColor = isDark ? '#334155' : '#e2e8f0';
+
+        // 🎨 Premium Colored Theme specifically for HOME PAGE
+        if (showHomeElements) {
+            bgColor = 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)'; // Premium Blue Gradient
+            textColor = '#ffffff'; // White text
+            borderColor = 'transparent'; 
+        }
 
         this.innerHTML = `
-            <div style="background: ${bgColor}; color: ${textColor}; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid ${borderColor}; position: sticky; top: 0; z-index: 100;">
+            <div style="background: ${bgColor}; color: ${textColor}; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid ${borderColor}; position: sticky; top: 0; z-index: 100; box-shadow: ${showHomeElements ? '0 4px 15px rgba(37,99,235,0.2)' : 'none'};">
                 
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    ${showHomeElements ? `
-                        <div onclick="window.location.href='${PROFILE_URL}/location.html'" style="cursor: pointer; display: flex; align-items: center; gap: 6px;">
-                            <span style="font-size: 18px;">📍</span>
-                            <div>
-                                <div style="font-size: 10px; color: ${isDark ? '#94a3b8' : '#64748b'}; font-weight: 600; text-transform: uppercase;">Location</div>
-                                <div style="font-size: 13px; font-weight: 700; line-height: 1.1;">Bhatpara <span style="font-size: 10px;">▼</span></div>
-                            </div>
-                        </div>
-                    ` : `
+                ${showHomeElements ? `
+                    <!-- 1. LEFT: Brand Name -->
+                    <div style="font-weight: 900; font-size: 19px; letter-spacing: -0.5px; display: flex; align-items: center;">
+                        CityPulse
+                    </div>
+                    
+                    <!-- 2. MIDDLE: Location Pill -->
+                    <div onclick="window.location.href='${PROFILE_URL}/location.html'" style="cursor: pointer; display: flex; align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.2); padding: 6px 14px; border-radius: 20px; backdrop-filter: blur(4px);">
+                        <span style="font-size: 14px;">📍</span>
+                        <div style="font-size: 12px; font-weight: 700; color: #ffffff;">Bhatpara <span style="font-size: 9px; opacity: 0.8;">▼</span></div>
+                    </div>
+
+                    <!-- 3. RIGHT: Notification Bell -->
+                    <div onclick="window.location.href='${PROFILE_URL}/notifications-setup.html'" style="position: relative; cursor: pointer; width: 34px; height: 34px; display: flex; justify-content: center; align-items: center; border-radius: 50%; background: rgba(255, 255, 255, 0.2);">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                        <span style="position: absolute; top: 8px; right: 8px; width: 7px; height: 7px; background: #ef4444; border-radius: 50%; border: 1.5px solid #1d4ed8;"></span>
+                    </div>
+                ` : `
+                    <!-- OTHER PAGES HEADER (Back Button + Title) -->
+                    <div style="display: flex; align-items: center; gap: 10px;">
                         <button onclick="window.history.back()" style="background: transparent; border: none; font-size: 20px; cursor: pointer; color: inherit;">←</button>
                         <span style="font-size: 16px; font-weight: 700;">${title}</span>
-                    `}
-                </div>
-
-                <div style="display: flex; align-items: center; gap: 14px;">
-                    ${showHomeElements ? `
-                        <div style="display: flex; align-items: center; gap: 6px; background: rgba(59,130,246,0.1); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(59,130,246,0.2);">
-                            <span style="font-size: 16px;">⛅</span>
-                            <span style="font-size: 12px; font-weight: 700; color: #2563eb;">31°C</span>
-                        </div>
-                    ` : ''}
-                    <div onclick="window.location.href='${PROFILE_URL}/notifications-setup.html'" style="position: relative; cursor: pointer; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; border-radius: 50%; background: ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(150,150,150,0.08)'};">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                        <span style="position: absolute; top: 8px; right: 8px; width: 7px; height: 7px; background: #ef4444; border-radius: 50%;"></span>
                     </div>
-                </div>
+                    <div style="width: 24px;"></div> <!-- Spacer -->
+                `}
             </div>
         `;
     }
@@ -78,7 +84,7 @@ class BottomNav extends HTMLElement {
 }
 customElements.define('bottom-nav', BottomNav);
 
-// Dummy Custom Element for Ad Space (to prevent breaking if index.html calls it)
+// Ad Space Component Helper
 class CityAdSpace extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `<div></div>`;
