@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CityPulse - Categories</title>
+    <!-- Core Global Design System -->
     <link rel="stylesheet" href="https://anupsharmasharma012-debug.github.io/citypulse-core/style.css">
     <style>
+        /* TOPBAR FIX */
         city-topbar { display: block; }
         city-topbar > div { background: transparent !important; border-bottom: none !important; box-shadow: none !important; }
 
-        /* DYNAMIC TOP HEADER */
+        /* 🔥 PREMIUM DYNAMIC HEADER (GPU Blur Filter Restored!) */
         .top-gradient-bg {
-            position: sticky; top: 0; z-index: 100;
+            position: sticky; 
+            top: 0; 
+            z-index: 100;
             background: linear-gradient(135deg, rgba(255, 237, 213, 0.95) 0%, rgba(254, 240, 138, 0.95) 100%);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px); /* The Magic Glass Effect */
+            -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             transition: background 0.4s ease-in-out;
         }
@@ -27,21 +32,22 @@
         .search-input { flex: 1; border: none; background: transparent; outline: none; color: var(--text-main); font-size: 13px; margin-left: 10px; font-weight: 600; }
         .search-input::placeholder { color: var(--text-muted); }
 
-        /* LAYOUT */
-        .split-layout { display: flex; height: calc(100vh - 120px); overflow: hidden; background: var(--bg-color); }
+        /* FIXED LAYOUT: Anti-Freeze Scrolling */
+        .split-layout { display: flex; height: calc(100vh - 120px); position: relative; z-index: 10; overflow: hidden; background: var(--bg-color); }
 
         /* LEFT PANEL */
         .left-panel { 
             width: 32%; 
+            height: 100%;
             background: var(--bg-color); 
             border-right: 1px solid var(--card-border); 
             overflow-y: auto; 
-            scrollbar-width: none; 
+            -webkit-overflow-scrolling: touch; 
             padding-bottom: 150px; 
+            scrollbar-width: none;
         }
         .left-panel::-webkit-scrollbar { display: none; }
         
-        /* COLORFUL TAB BOXES STYLE */
         .side-tab { 
             padding: 12px 4px; 
             margin: 6px 8px 6px 0; 
@@ -50,6 +56,7 @@
             text-align: center; cursor: pointer; 
             border-left: 4px solid transparent; 
             transition: all 0.2s; 
+            -webkit-tap-highlight-color: transparent;
         }
         .side-tab .tab-icon { 
             width: 40px; height: 40px; border-radius: 50%; 
@@ -58,51 +65,51 @@
         }
         .side-tab .tab-text { font-size: 10px; font-weight: 800; line-height: 1.2; text-transform: uppercase; letter-spacing: 0.3px; }
 
-        /* 🎨 INDIVIDUAL THEME COLORS FOR EACH BOX */
-        
-        /* Promos & Offers (Orange) */
+        /* THEME COLORS FOR LEFT TABS */
         .side-tab.promo-tab { background: rgba(234, 88, 12, 0.05); color: #ea580c; }
         .side-tab.promo-tab .tab-icon { background: rgba(234, 88, 12, 0.15); }
         .side-tab.promo-tab.active { background: rgba(234, 88, 12, 0.15); border-left-color: #ea580c; }
 
-        /* 🔥 SOS FIX: Deep Solid Red for Emergency Alert Feel */
         .side-tab.sos-tab { background: rgba(239, 68, 68, 0.08); color: #dc2626; }
         .side-tab.sos-tab .tab-icon { background: rgba(239, 68, 68, 0.2); }
-        .side-tab.sos-tab.active { background: #ef4444; color: #ffffff; border-left-color: #991b1b; } /* Becomes Solid Red on Active */
+        .side-tab.sos-tab.active { background: #ef4444; color: #ffffff; border-left-color: #991b1b; } 
         .side-tab.sos-tab.active .tab-icon { background: rgba(255, 255, 255, 0.25); color: #ffffff; }
 
-        /* News & Local (Blue) */
         .side-tab.news-tab { background: rgba(59, 130, 246, 0.05); color: #2563eb; }
         .side-tab.news-tab .tab-icon { background: rgba(59, 130, 246, 0.15); }
         .side-tab.news-tab.active { background: rgba(59, 130, 246, 0.15); border-left-color: #2563eb; }
 
-        /* Entertainment (Purple) */
         .side-tab.ent-tab { background: rgba(168, 85, 247, 0.05); color: #9333ea; }
         .side-tab.ent-tab .tab-icon { background: rgba(168, 85, 247, 0.15); }
         .side-tab.ent-tab.active { background: rgba(168, 85, 247, 0.15); border-left-color: #9333ea; }
 
-        /* Daily Needs (Green) */
         .side-tab.daily-tab { background: rgba(16, 185, 129, 0.05); color: #059669; }
         .side-tab.daily-tab .tab-icon { background: rgba(16, 185, 129, 0.15); }
         .side-tab.daily-tab.active { background: rgba(16, 185, 129, 0.15); border-left-color: #059669; }
 
-        /* Home Services (Amber/Orange) */
         .side-tab.serv-tab { background: rgba(249, 115, 22, 0.05); color: #ea580c; }
         .side-tab.serv-tab .tab-icon { background: rgba(249, 115, 22, 0.15); }
         .side-tab.serv-tab.active { background: rgba(249, 115, 22, 0.15); border-left-color: #ea580c; }
 
-        /* Transport (Yellow) */
         .side-tab.trans-tab { background: rgba(234, 179, 8, 0.05); color: #ca8a04; }
         .side-tab.trans-tab .tab-icon { background: rgba(234, 179, 8, 0.15); }
         .side-tab.trans-tab.active { background: rgba(234, 179, 8, 0.15); border-left-color: #ca8a04; }
 
-        /* Health Care (Teal) */
         .side-tab.health-tab { background: rgba(20, 184, 166, 0.05); color: #0d9488; }
         .side-tab.health-tab .tab-icon { background: rgba(20, 184, 166, 0.15); }
         .side-tab.health-tab.active { background: rgba(20, 184, 166, 0.15); border-left-color: #0d9488; }
 
         /* RIGHT PANEL */
-        .right-panel { width: 68%; background: var(--card-bg); overflow-y: auto; padding: 16px; scrollbar-width: none; padding-bottom: 150px; }
+        .right-panel { 
+            width: 68%; 
+            height: 100%;
+            background: var(--card-bg); 
+            overflow-y: auto; 
+            -webkit-overflow-scrolling: touch; 
+            padding: 16px; 
+            padding-bottom: 150px; 
+            scrollbar-width: none;
+        }
         .right-panel::-webkit-scrollbar { display: none; }
 
         .content-section { display: none; animation: fadeIn 0.3s ease; }
@@ -111,22 +118,50 @@
 
         .section-header { font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 16px; }
         .sub-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        .sub-card { background: var(--bg-color); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px 8px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
-        .sub-card:active { transform: scale(0.95); }
-        .sub-icon { font-size: 24px; }
-        .sub-text { font-size: 11px; font-weight: 700; color: var(--text-main); }
         
-        .view-all-card { background: rgba(37, 99, 235, 0.05); border: 1px solid rgba(37, 99, 235, 0.3); }
+        .sub-card { 
+            background: var(--bg-color); border: 1px solid var(--card-border); 
+            border-radius: 12px; padding: 12px 8px; display: flex; flex-direction: column; 
+            align-items: center; gap: 8px; text-align: center; cursor: pointer; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            -webkit-tap-highlight-color: transparent;
+        }
+        .sub-card:active { transform: scale(0.95); }
+        
+        .sub-icon { font-size: 24px; }
+        .sub-text { font-size: 11px; font-weight: 700; color: var(--text-main); line-height: 1.2; }
+        
+        .view-all-card { background: rgba(37, 99, 235, 0.05); border: 1px solid rgba(37, 99, 235, 0.2); }
         .view-all-card .sub-icon { color: var(--accent-blue); font-size: 20px; background: rgba(37, 99, 235, 0.15); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 2px;}
         .view-all-card .sub-text { color: var(--accent-blue); }
 
-        .promo-all-card { background: rgba(234, 88, 12, 0.05); border: 1px solid rgba(234, 88, 12, 0.3); }
+        .promo-all-card { background: rgba(234, 88, 12, 0.05); border: 1px solid rgba(234, 88, 12, 0.2); }
         .promo-all-card .sub-icon { color: #ea580c; background: rgba(234, 88, 12, 0.15); }
         .promo-all-card .sub-text { color: #ea580c; }
         
-        .sos-all-card { background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.3); }
+        .sos-all-card { background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); }
         .sos-all-card .sub-icon { color: #ef4444; background: rgba(239, 68, 68, 0.15); }
         .sos-all-card .sub-text { color: #ef4444; }
+
+        /* SAFE TOAST (Prevents Freezing) */
+        #custom-toast {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1f2937;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: bottom 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        #custom-toast.show { bottom: 80px; }
     </style>
 </head>
 <body>
@@ -144,7 +179,7 @@
 
         <main class="split-layout">
             
-            <!-- LEFT PANEL (Using strict IDs for Bulletproof Click Syncing) -->
+            <!-- LEFT PANEL -->
             <div class="left-panel">
                 <div class="side-tab promo-tab active" id="tab-offers" onclick="switchCategory('offers')"><div class="tab-icon">🔥</div><div class="tab-text">Promos</div></div>
                 <div class="side-tab sos-tab" id="tab-sos" onclick="switchCategory('sos')"><div class="tab-icon">🚨</div><div class="tab-text">SOS</div></div>
@@ -162,7 +197,7 @@
                 <!-- 1. PROMOS -->
                 <div id="content-offers" class="content-section active">
                     <div class="section-header" style="color: #ea580c;">Top Deals Today</div>
-                    <div style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(234, 88, 12, 0.25) 100%); border: 1px solid rgba(234, 88, 12, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 12px;">
+                    <div style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(234, 88, 12, 0.2) 100%); border: 1px solid rgba(234, 88, 12, 0.2); border-radius: 12px; padding: 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 12px;">
                         <span style="font-size: 32px;">🏷️</span>
                         <div>
                             <div style="font-size: 11px; font-weight: 800; color: #c2410c; text-transform: uppercase;">Flat ₹150 Off</div>
@@ -173,7 +208,7 @@
                         <div class="sub-card view-all-card promo-all-card" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-profile/wallet.html'">
                             <div class="sub-icon">➜</div><div class="sub-text">CityPulse Pay<br>Offers</div>
                         </div>
-                        <div class="sub-card" onclick="showToast('Free Delivery Applied!')">
+                        <div class="sub-card" onclick="showSafeToast('Free Delivery Applied!')">
                             <div class="sub-icon">🚚</div><div class="sub-text">Free Delivery</div>
                         </div>
                     </div>
@@ -183,7 +218,6 @@
                 <div id="content-sos" class="content-section">
                     <div class="section-header" style="color: #ef4444;">Emergency (SOS)</div>
                     <div class="sub-grid">
-                        <!-- Auto Syncing Cross Repo Working Links -->
                         <div class="sub-card view-all-card sos-all-card" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-profile/emergency-sos.html'">
                             <div class="sub-icon">➜</div><div class="sub-text">Open Main<br>SOS Hub</div>
                         </div>
@@ -206,7 +240,7 @@
                         <div class="sub-card view-all-card" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-core/index.html'">
                             <div class="sub-icon">➜</div><div class="sub-text">Go To Home<br>News Feed</div>
                         </div>
-                        <div class="sub-card" onclick="showToast('Loading Bhatpara Live Updates...')">
+                        <div class="sub-card" onclick="showSafeToast('Loading Bhatpara Updates...')">
                             <div class="sub-icon">📍</div><div class="sub-text">Bhatpara News</div>
                         </div>
                     </div>
@@ -216,10 +250,10 @@
                 <div id="content-entertainment" class="content-section">
                     <div class="section-header">Entertainment</div>
                     <div class="sub-grid">
-                        <div class="sub-card view-all-card" onclick="showToast('Module in development')">
+                        <div class="sub-card view-all-card" onclick="showSafeToast('Coming Soon!')">
                             <div class="sub-icon">➜</div><div class="sub-text">View All<br>Entertain</div>
                         </div>
-                        <div class="sub-card" onclick="showToast('Loading Movies...')">
+                        <div class="sub-card" onclick="showSafeToast('Loading Movies...')">
                             <div class="sub-icon">🍿</div><div class="sub-text">Movies</div>
                         </div>
                     </div>
@@ -229,13 +263,13 @@
                 <div id="content-daily" class="content-section">
                     <div class="section-header">Daily Needs</div>
                     <div class="sub-grid">
-                        <div class="sub-card view-all-card" onclick="showToast('Module in development')">
+                        <div class="sub-card view-all-card" onclick="showSafeToast('Coming Soon!')">
                             <div class="sub-icon">➜</div><div class="sub-text">View All<br>Daily Needs</div>
                         </div>
-                        <div class="sub-card" onclick="showToast('Loading Groceries...')">
+                        <div class="sub-card" onclick="showSafeToast('Loading Groceries...')">
                             <div class="sub-icon">🛍️</div><div class="sub-text">Groceries</div>
                         </div>
-                        <div class="sub-card" onclick="showToast('Loading Veggies...')">
+                        <div class="sub-card" onclick="showSafeToast('Loading Veggies...')">
                             <div class="sub-icon">🥬</div><div class="sub-text">Fresh Veg</div>
                         </div>
                     </div>
@@ -245,10 +279,10 @@
                 <div id="content-services" class="content-section">
                     <div class="section-header">Home Services</div>
                     <div class="sub-grid">
-                        <div class="sub-card view-all-card" onclick="showToast('Module in development')">
+                        <div class="sub-card view-all-card" onclick="showSafeToast('Coming Soon!')">
                             <div class="sub-icon">➜</div><div class="sub-text">View All<br>Services</div>
                         </div>
-                        <div class="sub-card" onclick="showToast('Loading Electricians...')">
+                        <div class="sub-card" onclick="showSafeToast('Loading Electricians...')">
                             <div class="sub-icon">🔌</div><div class="sub-text">Electricians</div>
                         </div>
                     </div>
@@ -258,10 +292,10 @@
                 <div id="content-transport" class="content-section">
                     <div class="section-header">Transport & Auto</div>
                     <div class="sub-grid">
-                        <div class="sub-card view-all-card" onclick="showToast('Module in development')">
+                        <div class="sub-card view-all-card" onclick="showSafeToast('Coming Soon!')">
                             <div class="sub-icon">➜</div><div class="sub-text">View All<br>Transport</div>
                         </div>
-                        <div class="sub-card" onclick="showToast('Loading Auto...')">
+                        <div class="sub-card" onclick="showSafeToast('Loading Auto...')">
                             <div class="sub-icon">🛺</div><div class="sub-text">Book Auto</div>
                         </div>
                     </div>
@@ -271,7 +305,7 @@
                 <div id="content-health" class="content-section">
                     <div class="section-header">Health Care</div>
                     <div class="sub-grid">
-                        <div class="sub-card view-all-card" onclick="showToast('Module in development')">
+                        <div class="sub-card view-all-card" onclick="showSafeToast('Coming Soon!')">
                             <div class="sub-icon">➜</div><div class="sub-text">View All<br>Health</div>
                         </div>
                         <div class="sub-card" onclick="window.location.href='tel:102'">
@@ -286,6 +320,9 @@
         <bottom-nav></bottom-nav>
     </div>
 
+    <!-- IN-APP TOAST -->
+    <div id="custom-toast"></div>
+
     <!-- CORE SCRIPTS -->
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/config.js"></script>
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/store.js"></script>
@@ -294,29 +331,13 @@
     <script>
         let isDarkMode = false;
         
-        // 🎨 DYNAMIC COLOR THEMES ENGINE
+        // Dynamic Glass Themes with opacity 0.95 to let the blur show through
         const sectionThemes = {
             'offers': { light: 'linear-gradient(135deg, rgba(255, 237, 213, 0.95), rgba(254, 240, 138, 0.95))', dark: 'linear-gradient(135deg, rgba(253, 186, 116, 0.15), rgba(250, 204, 21, 0.15))' }, 
-            
-            /* 🔥 SOS FIX: Deep Vibrant Red Theme on Header */
             'sos': { light: 'linear-gradient(135deg, rgba(239, 68, 68, 0.9), rgba(185, 28, 28, 0.9))', dark: 'linear-gradient(135deg, rgba(185, 28, 28, 0.8), rgba(127, 29, 29, 0.9))' }, 
-            
             'news': { light: 'linear-gradient(135deg, rgba(224, 242, 254, 0.95), rgba(186, 230, 253, 0.95))', dark: 'linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(14, 165, 233, 0.15))' }, 
             'entertainment': { light: 'linear-gradient(135deg, rgba(243, 232, 255, 0.95), rgba(233, 213, 255, 0.95))', dark: 'linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(147, 51, 234, 0.15))' }, 
             'daily': { light: 'linear-gradient(135deg, rgba(209, 250, 229, 0.95), rgba(167, 243, 208, 0.95))', dark: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.15))' }, 
             'services': { light: 'linear-gradient(135deg, rgba(255, 237, 213, 0.95), rgba(253, 186, 116, 0.95))', dark: 'linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.15))' }, 
             'transport': { light: 'linear-gradient(135deg, rgba(254, 249, 195, 0.95), rgba(253, 224, 71, 0.95))', dark: 'linear-gradient(135deg, rgba(234, 179, 8, 0.15), rgba(202, 138, 4, 0.15))' }, 
-            'health': { light: 'linear-gradient(135deg, rgba(204, 251, 241, 0.95), rgba(153, 246, 228, 0.95))', dark: 'linear-gradient(135deg, rgba(20, 184, 166, 0.15), rgba(13, 148, 136, 0.15))' } 
-        };
-
-        window.addEventListener('DOMContentLoaded', () => {
-            if (localStorage.getItem('cp_theme') === 'dark') {
-                document.body.classList.add('dark-mode');
-                isDarkMode = true;
-            }
-            document.getElementById('dynamic-header').style.background = isDarkMode ? sectionThemes['offers'].dark : sectionThemes['offers'].light;
-
-            setTimeout(() => {
-                const topbar = document.querySelector('city-topbar');
-                if (topbar && topbar.firstElementChild) {
-                    topbar.firstElementChild.style.setProp
+            'heal
