@@ -7,22 +7,23 @@
     <!-- Core Global Design System -->
     <link rel="stylesheet" href="https://anupsharmasharma012-debug.github.io/citypulse-core/style.css">
     <style>
-        /* TOP SEARCH AREA - LIGHT GLASSY PEACH & YELLOW */
-        .search-container {
-            padding: 12px 16px;
-            /* The exact glassy peach to yellow gradient you asked for! */
-            background: linear-gradient(135deg, rgba(255, 237, 213, 0.85) 0%, rgba(254, 240, 138, 0.85) 100%);
+        /* TOP SEAMLESS HEADER (Covers both Topbar and Search) */
+        .top-gradient-bg {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: linear-gradient(135deg, rgba(255, 237, 213, 0.95) 0%, rgba(254, 240, 138, 0.95) 100%);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(251, 146, 60, 0.2);
-            position: sticky;
-            top: 56px; /* Below Topbar */
-            z-index: 90;
         }
-        body.dark-mode .search-container {
-            /* Dark mode adaptation so it doesn't hurt eyes */
+        body.dark-mode .top-gradient-bg {
             background: linear-gradient(135deg, rgba(253, 186, 116, 0.15) 0%, rgba(250, 204, 21, 0.15) 100%);
             border-bottom: 1px solid rgba(251, 146, 60, 0.1);
+        }
+
+        .search-container {
+            padding: 0 16px 12px 16px; /* Top padding is 0 to merge with topbar */
         }
 
         .search-box {
@@ -49,7 +50,7 @@
         /* 2-PANEL LAYOUT (Blinkit/Zepto Style) */
         .split-layout {
             display: flex;
-            height: calc(100vh - 180px);
+            height: calc(100vh - 130px); /* Adjusted for seamless header */
             overflow: hidden;
             background: var(--bg-color);
         }
@@ -61,6 +62,7 @@
             border-right: 1px solid var(--card-border);
             overflow-y: auto;
             scrollbar-width: none;
+            padding-bottom: 90px;
         }
         .left-panel::-webkit-scrollbar { display: none; }
         
@@ -95,15 +97,19 @@
             border-left: 4px solid var(--accent-blue);
             color: var(--accent-blue);
         }
-        .side-tab.active .tab-icon {
-            background: rgba(37, 99, 235, 0.15);
-        }
+        .side-tab.active .tab-icon { background: rgba(37, 99, 235, 0.15); }
 
-        /* NEW: Special Promo Tab Styling */
+        /* Promo Tab Styling */
         .side-tab.promo-tab { color: #ea580c; }
         .side-tab.promo-tab .tab-icon { background: rgba(234, 88, 12, 0.15); color: #ea580c; }
         .side-tab.promo-tab.active { border-left-color: #ea580c; color: #ea580c; }
         .side-tab.promo-tab.active .tab-icon { background: rgba(234, 88, 12, 0.25); }
+
+        /* SOS Tab Styling */
+        .side-tab.sos-tab { color: #ef4444; }
+        .side-tab.sos-tab .tab-icon { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+        .side-tab.sos-tab.active { border-left-color: #ef4444; color: #ef4444; }
+        .side-tab.sos-tab.active .tab-icon { background: rgba(239, 68, 68, 0.25); }
 
         /* RIGHT PANEL (Sub-Sections) */
         .right-panel {
@@ -120,32 +126,11 @@
         .content-section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        .section-header {
-            font-size: 14px;
-            font-weight: 800;
-            color: var(--text-main);
-            margin-bottom: 16px;
-        }
+        .section-header { font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 16px; }
 
         /* Sub-Grid (2 Columns) */
-        .sub-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-        .sub-card {
-            background: var(--bg-color);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 12px 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            text-align: center;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-        }
+        .sub-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .sub-card { background: var(--bg-color); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px 8px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
         .sub-card:active { transform: scale(0.95); }
         .sub-icon { font-size: 24px; }
         .sub-text { font-size: 11px; font-weight: 700; color: var(--text-main); }
@@ -159,20 +144,26 @@
         .promo-all-card { background: rgba(234, 88, 12, 0.05); border: 1px solid rgba(234, 88, 12, 0.3); }
         .promo-all-card .sub-icon { color: #ea580c; background: rgba(234, 88, 12, 0.15); }
         .promo-all-card .sub-text { color: #ea580c; }
+        
+        /* SOS View All Card */
+        .sos-all-card { background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.3); }
+        .sos-all-card .sub-icon { color: #ef4444; background: rgba(239, 68, 68, 0.15); }
+        .sos-all-card .sub-text { color: #ef4444; }
 
     </style>
 </head>
 <body>
     <div class="max-width-container">
         
-        <!-- CORE TOPBAR -->
-        <city-topbar title="Explore Categories"></city-topbar>
+        <!-- SEAMLESS HEADER AREA (Topbar + Search) -->
+        <div class="top-gradient-bg">
+            <city-topbar title="Explore Categories"></city-topbar>
 
-        <!-- STICKY SEARCH BAR (New Glassy Peach/Yellow Background) -->
-        <div class="search-container">
-            <div class="search-box">
-                <span style="color: var(--text-muted); font-size: 18px;">🔍</span>
-                <input type="text" class="search-input" placeholder="Search groceries, doctors, offers...">
+            <div class="search-container">
+                <div class="search-box">
+                    <span style="color: var(--text-muted); font-size: 18px;">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search groceries, doctors, offers...">
+                </div>
             </div>
         </div>
 
@@ -181,7 +172,7 @@
             
             <!-- LEFT PANEL (Main Sections) -->
             <div class="left-panel">
-                <!-- 1. NEW: PROMOS & OFFERS TAB -->
+                <!-- 1. PROMOS & OFFERS TAB -->
                 <div class="side-tab promo-tab active" onclick="switchCategory('offers', this)">
                     <div class="tab-icon">🔥</div>
                     <div class="tab-text">Promos & Offers</div>
@@ -206,16 +197,29 @@
                     <div class="tab-icon">💊</div>
                     <div class="tab-text">Health Care</div>
                 </div>
+                <!-- 6. NEW: SOS -->
+                <div class="side-tab sos-tab" onclick="switchCategory('sos', this)">
+                    <div class="tab-icon">🚨</div>
+                    <div class="tab-text">Emergency (SOS)</div>
+                </div>
+                <!-- 7. NEW: News -->
+                <div class="side-tab" onclick="switchCategory('news', this)">
+                    <div class="tab-icon">📰</div>
+                    <div class="tab-text">News & Local</div>
+                </div>
+                <!-- 8. NEW: Entertainment -->
+                <div class="side-tab" onclick="switchCategory('entertainment', this)">
+                    <div class="tab-icon">🎬</div>
+                    <div class="tab-text">Entertainment</div>
+                </div>
             </div>
 
             <!-- RIGHT PANEL (Sub Sections) -->
             <div class="right-panel">
                 
-                <!-- 1. NEW: PROMOS & OFFERS SUB-SECTION -->
+                <!-- 1. PROMOS & OFFERS SUB-SECTION -->
                 <div id="content-offers" class="content-section active">
                     <div class="section-header" style="color: #ea580c;">Top Deals Today</div>
-                    
-                    <!-- Major Promo Banner -->
                     <div style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(234, 88, 12, 0.25) 100%); border: 1px solid rgba(234, 88, 12, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 12px;">
                         <span style="font-size: 32px;">🏷️</span>
                         <div>
@@ -223,23 +227,15 @@
                             <div style="font-size: 13px; font-weight: 800; color: var(--text-main); margin-top: 2px;">On your first Grocery Order</div>
                         </div>
                     </div>
-
                     <div class="sub-grid">
                         <div class="sub-card view-all-card promo-all-card" onclick="showToast('Opening All Offers...')">
-                            <div class="sub-icon">➜</div>
-                            <div class="sub-text">View All<br>Promos</div>
+                            <div class="sub-icon">➜</div><div class="sub-text">View All<br>Promos</div>
                         </div>
                         <div class="sub-card" onclick="showToast('Applying Free Delivery...')">
-                            <div class="sub-icon">🚚</div>
-                            <div class="sub-text">Free Delivery</div>
+                            <div class="sub-icon">🚚</div><div class="sub-text">Free Delivery</div>
                         </div>
                         <div class="sub-card" onclick="showToast('Loading BOGO Offers...')">
-                            <div class="sub-icon">🎁</div>
-                            <div class="sub-text">Buy 1 Get 1</div>
-                        </div>
-                        <div class="sub-card" onclick="showToast('Loading Bank Discounts...')">
-                            <div class="sub-icon">💳</div>
-                            <div class="sub-text">Bank Cards</div>
+                            <div class="sub-icon">🎁</div><div class="sub-text">Buy 1 Get 1</div>
                         </div>
                     </div>
                 </div>
@@ -247,28 +243,18 @@
                 <!-- 2. DAILY NEEDS SUB-SECTION -->
                 <div id="content-daily" class="content-section">
                     <div class="section-header">Daily Needs</div>
-                    
-                    <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(52, 211, 153, 0.2) 100%); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 12px; padding: 12px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
-                        <span style="font-size: 24px;">🎉</span>
-                        <div style="font-size: 11px; font-weight: 800; color: var(--text-main);">Up to 20% Off on Groceries</div>
-                    </div>
-
                     <div class="sub-grid">
                         <div class="sub-card view-all-card" onclick="showToast('Opening All Daily Needs...')">
-                            <div class="sub-icon">➜</div>
-                            <div class="sub-text">View All<br>Daily Needs</div>
+                            <div class="sub-icon">➜</div><div class="sub-text">View All<br>Daily Needs</div>
                         </div>
                         <div class="sub-card" onclick="showToast('Loading Groceries...')">
-                            <div class="sub-icon">🛍️</div>
-                            <div class="sub-text">Groceries</div>
+                            <div class="sub-icon">🛍️</div><div class="sub-text">Groceries</div>
                         </div>
                         <div class="sub-card" onclick="showToast('Loading Veggies...')">
-                            <div class="sub-icon">🥬</div>
-                            <div class="sub-text">Fresh Veg</div>
+                            <div class="sub-icon">🥬</div><div class="sub-text">Fresh Veg</div>
                         </div>
                         <div class="sub-card" onclick="showToast('Loading Dairy...')">
-                            <div class="sub-icon">🥛</div>
-                            <div class="sub-text">Milk & Dairy</div>
+                            <div class="sub-icon">🥛</div><div class="sub-text">Milk & Dairy</div>
                         </div>
                     </div>
                 </div>
@@ -278,20 +264,16 @@
                     <div class="section-header">Home Services</div>
                     <div class="sub-grid">
                         <div class="sub-card view-all-card" onclick="showToast('Opening All Services...')">
-                            <div class="sub-icon">➜</div>
-                            <div class="sub-text">View All<br>Services</div>
+                            <div class="sub-icon">➜</div><div class="sub-text">View All<br>Services</div>
                         </div>
                         <div class="sub-card" onclick="showToast('Loading Electricians...')">
-                            <div class="sub-icon">🔌</div>
-                            <div class="sub-text">Electricians</div>
+                            <div class="sub-icon">🔌</div><div class="sub-text">Electricians</div>
                         </div>
                         <div class="sub-card" onclick="showToast('Loading Plumbers...')">
-                            <div class="sub-icon">🚰</div>
-                            <div class="sub-text">Plumbers</div>
+                            <div class="sub-icon">🚰</div><div class="sub-text">Plumbers</div>
                         </div>
                         <div class="sub-card" onclick="showToast('Loading AC Repair...')">
-                            <div class="sub-icon">❄️</div>
-                            <div class="sub-text">AC Servicing</div>
+                            <div class="sub-icon">❄️</div><div class="sub-text">AC Servicing</div>
                         </div>
                     </div>
                 </div>
@@ -301,16 +283,13 @@
                     <div class="section-header">Transport & Auto</div>
                     <div class="sub-grid">
                         <div class="sub-card view-all-card" onclick="showToast('Opening All Transport...')">
-                            <div class="sub-icon">➜</div>
-                            <div class="sub-text">View All<br>Transport</div>
+                            <div class="sub-icon">➜</div><div class="sub-text">View All<br>Transport</div>
                         </div>
                         <div class="sub-card" onclick="showToast('Loading Auto...')">
-                            <div class="sub-icon">🛺</div>
-                            <div class="sub-text">Book Auto</div>
+                            <div class="sub-icon">🛺</div><div class="sub-text">Book Auto</div>
                         </div>
                         <div class="sub-card" onclick="showToast('Loading Mechanics...')">
-                            <div class="sub-icon">🔧</div>
-                            <div class="sub-text">Bike Mechanic</div>
+                            <div class="sub-icon">🔧</div><div class="sub-text">Bike Mechanic</div>
                         </div>
                     </div>
                 </div>
@@ -320,20 +299,70 @@
                     <div class="section-header">Health Care</div>
                     <div class="sub-grid">
                         <div class="sub-card view-all-card" onclick="showToast('Opening All Health...')">
-                            <div class="sub-icon">➜</div>
-                            <div class="sub-text">View All<br>Health</div>
+                            <div class="sub-icon">➜</div><div class="sub-text">View All<br>Health</div>
                         </div>
                         <div class="sub-card" onclick="showToast('Loading Pharmacy...')">
-                            <div class="sub-icon">💊</div>
-                            <div class="sub-text">Pharmacies</div>
+                            <div class="sub-icon">💊</div><div class="sub-text">Pharmacies</div>
                         </div>
                         <div class="sub-card" onclick="showToast('Loading Clinics...')">
-                            <div class="sub-icon">🩺</div>
-                            <div class="sub-text">Local Clinics</div>
+                            <div class="sub-icon">🩺</div><div class="sub-text">Local Clinics</div>
                         </div>
-                        <div class="sub-card" onclick="showToast('Loading Labs...')">
-                            <div class="sub-icon">🔬</div>
-                            <div class="sub-text">Pathology Labs</div>
+                    </div>
+                </div>
+
+                <!-- 6. NEW: SOS SUB-SECTION -->
+                <div id="content-sos" class="content-section">
+                    <div class="section-header" style="color: #ef4444;">Emergency (SOS)</div>
+                    <div class="sub-grid">
+                        <div class="sub-card view-all-card sos-all-card" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-profile/emergency-sos.html'">
+                            <div class="sub-icon">➜</div><div class="sub-text">Open Main<br>SOS Hub</div>
+                        </div>
+                        <div class="sub-card" onclick="window.location.href='tel:100'">
+                            <div class="sub-icon">🚓</div><div class="sub-text">Call Police</div>
+                        </div>
+                        <div class="sub-card" onclick="window.location.href='tel:102'">
+                            <div class="sub-icon">🚑</div><div class="sub-text">Ambulance</div>
+                        </div>
+                        <div class="sub-card" onclick="window.location.href='tel:101'">
+                            <div class="sub-icon">🚒</div><div class="sub-text">Fire Brigade</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. NEW: NEWS SUB-SECTION -->
+                <div id="content-news" class="content-section">
+                    <div class="section-header">News & Local</div>
+                    <div class="sub-grid">
+                        <div class="sub-card view-all-card" onclick="showToast('Opening Full News Feed...')">
+                            <div class="sub-icon">➜</div><div class="sub-text">View All<br>News</div>
+                        </div>
+                        <div class="sub-card" onclick="showToast('Loading Local News...')">
+                            <div class="sub-icon">📍</div><div class="sub-text">Bhatpara News</div>
+                        </div>
+                        <div class="sub-card" onclick="showToast('Loading Live TV...')">
+                            <div class="sub-icon">📺</div><div class="sub-text">Live TV</div>
+                        </div>
+                        <div class="sub-card" onclick="showToast('Loading Sports...')">
+                            <div class="sub-icon">🏏</div><div class="sub-text">Sports</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. NEW: ENTERTAINMENT SUB-SECTION -->
+                <div id="content-entertainment" class="content-section">
+                    <div class="section-header">Entertainment</div>
+                    <div class="sub-grid">
+                        <div class="sub-card view-all-card" onclick="showToast('Opening Entertainment Hub...')">
+                            <div class="sub-icon">➜</div><div class="sub-text">View All<br>Entertainment</div>
+                        </div>
+                        <div class="sub-card" onclick="showToast('Loading Movies...')">
+                            <div class="sub-icon">🍿</div><div class="sub-text">Movies</div>
+                        </div>
+                        <div class="sub-card" onclick="showToast('Loading Music...')">
+                            <div class="sub-icon">🎵</div><div class="sub-text">Music</div>
+                        </div>
+                        <div class="sub-card" onclick="showToast('Loading Events...')">
+                            <div class="sub-icon">🎪</div><div class="sub-text">Local Events</div>
                         </div>
                     </div>
                 </div>
@@ -349,28 +378,14 @@
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/components.js"></script>
     
     <script>
+        // Global Theme Check
         window.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('cp_theme') === 'dark') {
                 document.body.classList.add('dark-mode');
             }
-        });
 
-        function switchCategory(categoryId, element) {
-            document.querySelectorAll('.side-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            element.classList.add('active');
-
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            document.getElementById('content-' + categoryId).classList.add('active');
-        }
-
-        function showToast(msg) {
-            alert(msg); 
-        }
-    </script>
-</body>
-</html>
+            // MAGIC: Make the Topbar Component completely transparent so our wrapper shows through!
+            setTimeout(() => {
+                const topbar = document.querySelector('city-topbar');
+                if (topbar && topbar.firstElementChild) {
+                    topbar.firstEle
