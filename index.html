@@ -6,15 +6,15 @@
     <title>CityPulse - Home</title>
     <link rel="stylesheet" href="https://anupsharmasharma012-debug.github.io/citypulse-core/style.css">
     <style>
-        /* DYNAMIC BACKGROUND (Height increased to cover taller banners) */
+        /* DYNAMIC BACKGROUND (Height perfectly adjusted to Hero Card only) */
         #dynamic-header-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 540px; 
+            height: 420px; /* <--- Fixed Height: Yahan par background cut ho jayega */
             z-index: 0;
-            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.6) 0%, rgba(59, 130, 246, 0.8) 100%);
             border-bottom-left-radius: 32px;
             border-bottom-right-radius: 32px;
             transition: background 0.6s ease-in-out;
@@ -58,7 +58,7 @@
         }
         .icon-label { font-size: 11px; font-weight: 700; color: var(--text-main); text-align: center; }
 
-        /* 3D HERO BANNER CAROUSEL (TALLER CARDS) */
+        /* 3D HERO BANNER CAROUSEL */
         .banner-carousel {
             display: flex;
             overflow-x: auto;
@@ -73,10 +73,10 @@
         .banner-carousel::-webkit-scrollbar { display: none; }
         .banner-card {
             min-width: 88%;
-            min-height: 220px; /* Card ko lamba/bada kiya gaya hai */
+            min-height: 220px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Text ko thoda niche shift kiya hai */
+            justify-content: flex-end; 
             scroll-snap-align: center;
             border-radius: 18px;
             padding: 24px;
@@ -151,32 +151,32 @@
                 </div>
             </div>
 
-            <!-- 3D DYNAMIC BANNER CAROUSEL (TALLER CARDS) -->
+            <!-- 3D DYNAMIC BANNER CAROUSEL -->
             <div class="banner-carousel" id="3d-carousel">
                 
-                <!-- 1. Local Network (Light Pastel Blue) -->
-                <div class="banner-card active-3d" data-theme="linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%)">
+                <!-- 1. Local Network (Light Transparent Blue) -->
+                <div class="banner-card active-3d" data-theme="linear-gradient(135deg, rgba(96, 165, 250, 0.65) 0%, rgba(59, 130, 246, 0.85) 100%)">
                     <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; opacity: 0.95; margin-bottom: 6px; letter-spacing: 0.5px;">Local Network</div>
                     <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 8px;">Bhatpara Updates 📢</h2>
                     <p style="font-size: 13px; opacity: 1; line-height: 1.4;">Stay connected with local FB channels and neighborhood alerts instantly.</p>
                 </div>
                 
-                <!-- 2. Live Channel (Light Pastel Orange) -->
-                <div class="banner-card" data-theme="linear-gradient(135deg, #fb923c 0%, #f97316 100%)">
+                <!-- 2. Live Channel (Light Transparent Orange) -->
+                <div class="banner-card" data-theme="linear-gradient(135deg, rgba(251, 146, 60, 0.65) 0%, rgba(249, 115, 22, 0.85) 100%)">
                     <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; opacity: 0.95; margin-bottom: 6px; letter-spacing: 0.5px;">Now Streaming</div>
                     <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 8px;">Live Channels 🔴</h2>
                     <p style="font-size: 13px; opacity: 1; line-height: 1.4;">Watch your favorite live broadcasts and breaking news anytime.</p>
                 </div>
 
-                <!-- 3. Top Headlines (DEEP PREMIUM PURPLE) -->
-                <div class="banner-card" data-theme="linear-gradient(135deg, #7e22ce 0%, #4c1d95 100%)">
+                <!-- 3. Top Headlines (DEEP PREMIUM PURPLE - Richer Contrast) -->
+                <div class="banner-card" data-theme="linear-gradient(135deg, rgba(147, 51, 234, 0.75) 0%, rgba(107, 33, 168, 0.95) 100%)">
                     <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; opacity: 0.9; margin-bottom: 6px; letter-spacing: 0.5px;">Trending Now</div>
                     <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 8px;">Top Headlines 📰</h2>
                     <p style="font-size: 13px; opacity: 0.95; line-height: 1.4;">Daily catch-up on national and global top stories curated for you.</p>
                 </div>
 
-                <!-- 4. Entertainment (Light Pastel Green) -->
-                <div class="banner-card" data-theme="linear-gradient(135deg, #34d399 0%, #10b981 100%)">
+                <!-- 4. Entertainment (Light Transparent Green) -->
+                <div class="banner-card" data-theme="linear-gradient(135deg, rgba(52, 211, 153, 0.65) 0%, rgba(16, 185, 129, 0.85) 100%)">
                     <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; opacity: 0.95; margin-bottom: 6px; letter-spacing: 0.5px;">Chill & Relax</div>
                     <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 8px;">Entertainment 🍿</h2>
                     <p style="font-size: 13px; opacity: 1; line-height: 1.4;">Movies, shows, and viral content to make your day better.</p>
@@ -184,11 +184,11 @@
 
             </div>
 
-            <!-- AD SPACE (Moved Between Hero and Quick Links) -->
-            <div class="section-title" style="margin-top: 8px;">Promoted Offers</div>
+            <!-- AD SPACE (Safe outside background color) -->
+            <div class="section-title" style="margin-top: 12px;">Promoted Offers</div>
             <city-ad-space></city-ad-space>
 
-            <!-- QUICK SERVICE GRID (Detached with margin-top) -->
+            <!-- QUICK SERVICE GRID -->
             <div class="section-title" style="margin-top: 36px;">Quick Links</div>
             <div class="quick-grid">
                 <div class="quick-item" onclick="window.location.href='category.html'">
@@ -238,7 +238,7 @@
                 document.body.classList.add('dark-mode');
             }
 
-            // Make Topbar completely transparent so dynamic bg shows through
+            // Transparent Topbar Setup
             setTimeout(() => {
                 const topbar = document.querySelector('city-topbar');
                 if (topbar && topbar.firstElementChild) {
@@ -247,7 +247,7 @@
                 }
             }, 100);
 
-            // 3D Carousel & Dynamic Color Sync Logic
+            // Dynamic Color Sync Logic
             const carousel = document.getElementById('3d-carousel');
             const cards = carousel.querySelectorAll('.banner-card');
             const dynamicBg = document.getElementById('dynamic-header-bg');
