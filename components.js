@@ -16,8 +16,8 @@ class CityTopbar extends HTMLElement {
 
         // 🎨 Premium Colored Theme specifically for HOME PAGE
         if (showHomeElements) {
-            bgColor = 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)'; // Premium Blue Gradient
-            textColor = '#ffffff'; // White text
+            bgColor = 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)'; 
+            textColor = '#ffffff'; 
             borderColor = 'transparent'; 
         }
 
@@ -26,21 +26,40 @@ class CityTopbar extends HTMLElement {
                 
                 ${showHomeElements ? `
                     <!-- 1. LEFT: Brand Name -->
-                    <div style="font-weight: 900; font-size: 19px; letter-spacing: -0.5px; display: flex; align-items: center;">
+                    <div style="flex: 1; display: flex; justify-content: flex-start; font-weight: 900; font-size: 18px; letter-spacing: -0.5px; align-items: center;">
                         CityPulse
                     </div>
                     
-                    <!-- 2. MIDDLE: Location Pill -->
-                    <div onclick="window.location.href='${PROFILE_URL}/location.html'" style="cursor: pointer; display: flex; align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.2); padding: 6px 14px; border-radius: 20px; backdrop-filter: blur(4px);">
-                        <span style="font-size: 14px;">📍</span>
-                        <div style="font-size: 12px; font-weight: 700; color: #ffffff;">Bhatpara <span style="font-size: 9px; opacity: 0.8;">▼</span></div>
+                    <!-- 2. MIDDLE: Location Pill (Centered) -->
+                    <div style="flex: 1; display: flex; justify-content: center;">
+                        <div onclick="window.location.href='${PROFILE_URL}/location.html'" style="cursor: pointer; display: flex; align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.2); padding: 4px 12px; border-radius: 20px; backdrop-filter: blur(4px);">
+                            <span style="font-size: 13px;">📍</span>
+                            <div style="font-size: 11px; font-weight: 700; color: #ffffff;">Bhatpara <span style="font-size: 8px; opacity: 0.8;">▼</span></div>
+                        </div>
                     </div>
 
-                    <!-- 3. RIGHT: Notification Bell -->
-                    <div onclick="window.location.href='${PROFILE_URL}/notifications-setup.html'" style="position: relative; cursor: pointer; width: 34px; height: 34px; display: flex; justify-content: center; align-items: center; border-radius: 50%; background: rgba(255, 255, 255, 0.2);">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                        <span style="position: absolute; top: 8px; right: 8px; width: 7px; height: 7px; background: #ef4444; border-radius: 50%; border: 1.5px solid #1d4ed8;"></span>
+                    <!-- 3. RIGHT: Weather (Restored!) & Notification Bell -->
+                    <div style="flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 8px;">
+                        <!-- Weather Widget -->
+                        <div style="display: flex; align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.2); padding: 4px 8px; border-radius: 20px;">
+                            <span style="font-size: 14px; animation: floatIcon 2s ease-in-out infinite;">⛅</span>
+                            <span style="font-size: 11px; font-weight: 700; color: #ffffff;">31°C</span>
+                        </div>
+
+                        <!-- Notification Bell -->
+                        <div onclick="window.location.href='${PROFILE_URL}/notifications-setup.html'" style="position: relative; cursor: pointer; width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; border-radius: 50%; background: rgba(255, 255, 255, 0.2);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                            <span style="position: absolute; top: 6px; right: 6px; width: 6px; height: 6px; background: #ef4444; border-radius: 50%; border: 1.5px solid #1d4ed8;"></span>
+                        </div>
                     </div>
+                    
+                    <!-- CSS Animation for Weather -->
+                    <style>
+                        @keyframes floatIcon {
+                            0%, 100% { transform: translateY(0); }
+                            50% { transform: translateY(-3px); }
+                        }
+                    </style>
                 ` : `
                     <!-- OTHER PAGES HEADER (Back Button + Title) -->
                     <div style="display: flex; align-items: center; gap: 10px;">
