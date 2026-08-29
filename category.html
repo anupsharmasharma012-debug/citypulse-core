@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CityPulse - Categories</title>
+    <!-- Core Global Design System -->
     <link rel="stylesheet" href="https://anupsharmasharma012-debug.github.io/citypulse-core/style.css">
     <style>
-        /* TOPBAR FIX */
+        /* TOPBAR FIX (Makes it transparent to show background) */
         city-topbar { display: block; }
         city-topbar > div { background: transparent !important; border-bottom: none !important; box-shadow: none !important; }
 
-        /* 🔥 PREMIUM HEADER (GPU Blur Filter Restored) */
+        /* 🔥 PREMIUM DYNAMIC HEADER (GPU Blur Filter Back!) */
         .top-gradient-bg {
             position: sticky; 
             top: 0; 
@@ -69,7 +70,7 @@
         .side-tab.promo-tab .tab-icon { background: rgba(234, 88, 12, 0.15); }
         .side-tab.promo-tab.active { background: rgba(234, 88, 12, 0.15); border-left-color: #ea580c; }
 
-        /* 🚨 SOLID DEEP RED SOS FIX (Using !important to guarantee color) */
+        /* SOLID DEEP RED SOS FIX */
         .side-tab.sos-tab { background: rgba(239, 68, 68, 0.08); color: #dc2626; }
         .side-tab.sos-tab .tab-icon { background: rgba(239, 68, 68, 0.2); }
         .side-tab.sos-tab.active { background: #dc2626 !important; color: #ffffff !important; border-left-color: #991b1b !important; } 
@@ -119,12 +120,15 @@
         .section-header { font-size: 14px; font-weight: 800; color: var(--text-main); margin-bottom: 16px; }
         .sub-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         
+        /* 🔥 HTML ANCHOR TAG STYLING (For Bulletproof Linking) */
         .sub-card { 
             background: var(--bg-color); border: 1px solid var(--card-border); 
             border-radius: 12px; padding: 12px 8px; display: flex; flex-direction: column; 
             align-items: center; gap: 8px; text-align: center; cursor: pointer; 
             box-shadow: 0 2px 8px rgba(0,0,0,0.02);
             -webkit-tap-highlight-color: transparent;
+            text-decoration: none; /* Removes underline from links */
+            color: inherit; /* Keeps text color normal */
         }
         .sub-card:active { transform: scale(0.95); }
         
@@ -142,15 +146,6 @@
         .sos-all-card { background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); }
         .sos-all-card .sub-icon { color: #ef4444; background: rgba(239, 68, 68, 0.15); }
         .sos-all-card .sub-text { color: #ef4444; }
-
-        /* SAFE TOAST */
-        #custom-toast {
-            position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%);
-            background: #1f2937; color: #ffffff; padding: 12px 24px; border-radius: 30px;
-            font-size: 12px; font-weight: 600; z-index: 9999; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: bottom 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); pointer-events: none; white-space: nowrap;
-        }
-        #custom-toast.show { bottom: 80px; }
     </style>
 </head>
 <body>
@@ -168,19 +163,19 @@
 
         <main class="split-layout">
             
-            <!-- LEFT PANEL (Using Data Attributes instead of onclick for bulletproof execution) -->
+            <!-- LEFT PANEL -->
             <div class="left-panel">
-                <div class="side-tab promo-tab active" data-target="offers"><div class="tab-icon">🔥</div><div class="tab-text">Promos</div></div>
-                <div class="side-tab sos-tab" data-target="sos"><div class="tab-icon">🚨</div><div class="tab-text">SOS</div></div>
-                <div class="side-tab news-tab" data-target="news"><div class="tab-icon">📰</div><div class="tab-text">News</div></div>
-                <div class="side-tab ent-tab" data-target="entertainment"><div class="tab-icon">🎬</div><div class="tab-text">Entertain</div></div>
-                <div class="side-tab daily-tab" data-target="daily"><div class="tab-icon">🛒</div><div class="tab-text">Groceries</div></div>
-                <div class="side-tab serv-tab" data-target="services"><div class="tab-icon">🔌</div><div class="tab-text">Services</div></div>
-                <div class="side-tab trans-tab" data-target="transport"><div class="tab-icon">🛺</div><div class="tab-text">Transport</div></div>
-                <div class="side-tab health-tab" data-target="health"><div class="tab-icon">💊</div><div class="tab-text">Health</div></div>
+                <div class="side-tab promo-tab active" id="tab-offers" onclick="switchCategory('offers')"><div class="tab-icon">🔥</div><div class="tab-text">Promos</div></div>
+                <div class="side-tab sos-tab" id="tab-sos" onclick="switchCategory('sos')"><div class="tab-icon">🚨</div><div class="tab-text">SOS</div></div>
+                <div class="side-tab news-tab" id="tab-news" onclick="switchCategory('news')"><div class="tab-icon">📰</div><div class="tab-text">News</div></div>
+                <div class="side-tab ent-tab" id="tab-entertainment" onclick="switchCategory('entertainment')"><div class="tab-icon">🎬</div><div class="tab-text">Entertain</div></div>
+                <div class="side-tab daily-tab" id="tab-daily" onclick="switchCategory('daily')"><div class="tab-icon">🛒</div><div class="tab-text">Groceries</div></div>
+                <div class="side-tab serv-tab" id="tab-services" onclick="switchCategory('services')"><div class="tab-icon">🔌</div><div class="tab-text">Services</div></div>
+                <div class="side-tab trans-tab" id="tab-transport" onclick="switchCategory('transport')"><div class="tab-icon">🛺</div><div class="tab-text">Transport</div></div>
+                <div class="side-tab health-tab" id="tab-health" onclick="switchCategory('health')"><div class="tab-icon">💊</div><div class="tab-text">Health</div></div>
             </div>
 
-            <!-- RIGHT PANEL -->
+            <!-- RIGHT PANEL (Using standard <a> tags for routing) -->
             <div class="right-panel">
                 
                 <!-- 1. PROMOS -->
@@ -194,10 +189,10 @@
                         </div>
                     </div>
                     <div class="sub-grid">
-                        <div class="sub-card view-all-card promo-all-card" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-profile/wallet.html'">
+                        <a href="https://anupsharmasharma012-debug.github.io/citypulse-profile/wallet.html" class="sub-card view-all-card promo-all-card">
                             <div class="sub-icon">➜</div><div class="sub-text">CityPulse Pay<br>Offers</div>
-                        </div>
-                        <div class="sub-card" onclick="showSafeToast('Free Delivery Applied!')">
+                        </a>
+                        <div class="sub-card">
                             <div class="sub-icon">🚚</div><div class="sub-text">Free Delivery</div>
                         </div>
                     </div>
@@ -207,18 +202,18 @@
                 <div id="content-sos" class="content-section">
                     <div class="section-header" style="color: #ef4444;">Emergency (SOS)</div>
                     <div class="sub-grid">
-                        <div class="sub-card view-all-card sos-all-card" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-profile/emergency-sos.html'">
+                        <a href="https://anupsharmasharma012-debug.github.io/citypulse-profile/emergency-sos.html" class="sub-card view-all-card sos-all-card">
                             <div class="sub-icon">➜</div><div class="sub-text">Open Main<br>SOS Hub</div>
-                        </div>
-                        <div class="sub-card" onclick="window.location.href='tel:100'">
+                        </a>
+                        <a href="tel:100" class="sub-card">
                             <div class="sub-icon">🚓</div><div class="sub-text">Call Police</div>
-                        </div>
-                        <div class="sub-card" onclick="window.location.href='tel:102'">
+                        </a>
+                        <a href="tel:102" class="sub-card">
                             <div class="sub-icon">🚑</div><div class="sub-text">Ambulance</div>
-                        </div>
-                        <div class="sub-card" onclick="window.location.href='tel:101'">
+                        </a>
+                        <a href="tel:101" class="sub-card">
                             <div class="sub-icon">🚒</div><div class="sub-text">Fire Brigade</div>
-                        </div>
+                        </a>
                     </div>
                 </div>
 
@@ -226,10 +221,10 @@
                 <div id="content-news" class="content-section">
                     <div class="section-header">News & Local</div>
                     <div class="sub-grid">
-                        <div class="sub-card view-all-card" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-core/index.html'">
+                        <a href="https://anupsharmasharma012-debug.github.io/citypulse-core/index.html" class="sub-card view-all-card">
                             <div class="sub-icon">➜</div><div class="sub-text">Go To Home<br>News Feed</div>
-                        </div>
-                        <div class="sub-card" onclick="showSafeToast('Loading Bhatpara Updates...')">
+                        </a>
+                        <div class="sub-card">
                             <div class="sub-icon">📍</div><div class="sub-text">Bhatpara News</div>
                         </div>
                     </div>
@@ -239,10 +234,10 @@
                 <div id="content-entertainment" class="content-section">
                     <div class="section-header">Entertainment</div>
                     <div class="sub-grid">
-                        <div class="sub-card view-all-card" onclick="showSafeToast('Coming Soon!')">
+                        <div class="sub-card view-all-card">
                             <div class="sub-icon">➜</div><div class="sub-text">View All<br>Entertain</div>
                         </div>
-                        <div class="sub-card" onclick="showSafeToast('Loading Movies...')">
+                        <div class="sub-card">
                             <div class="sub-icon">🍿</div><div class="sub-text">Movies</div>
                         </div>
                     </div>
@@ -252,13 +247,13 @@
                 <div id="content-daily" class="content-section">
                     <div class="section-header">Daily Needs</div>
                     <div class="sub-grid">
-                        <div class="sub-card view-all-card" onclick="showSafeToast('Coming Soon!')">
+                        <div class="sub-card view-all-card">
                             <div class="sub-icon">➜</div><div class="sub-text">View All<br>Daily Needs</div>
                         </div>
-                        <div class="sub-card" onclick="showSafeToast('Loading Groceries...')">
+                        <div class="sub-card">
                             <div class="sub-icon">🛍️</div><div class="sub-text">Groceries</div>
                         </div>
-                        <div class="sub-card" onclick="showSafeToast('Loading Veggies...')">
+                        <div class="sub-card">
                             <div class="sub-icon">🥬</div><div class="sub-text">Fresh Veg</div>
                         </div>
                     </div>
@@ -268,10 +263,10 @@
                 <div id="content-services" class="content-section">
                     <div class="section-header">Home Services</div>
                     <div class="sub-grid">
-                        <div class="sub-card view-all-card" onclick="showSafeToast('Coming Soon!')">
+                        <div class="sub-card view-all-card">
                             <div class="sub-icon">➜</div><div class="sub-text">View All<br>Services</div>
                         </div>
-                        <div class="sub-card" onclick="showSafeToast('Loading Electricians...')">
+                        <div class="sub-card">
                             <div class="sub-icon">🔌</div><div class="sub-text">Electricians</div>
                         </div>
                     </div>
@@ -281,10 +276,10 @@
                 <div id="content-transport" class="content-section">
                     <div class="section-header">Transport & Auto</div>
                     <div class="sub-grid">
-                        <div class="sub-card view-all-card" onclick="showSafeToast('Coming Soon!')">
+                        <div class="sub-card view-all-card">
                             <div class="sub-icon">➜</div><div class="sub-text">View All<br>Transport</div>
                         </div>
-                        <div class="sub-card" onclick="showSafeToast('Loading Auto...')">
+                        <div class="sub-card">
                             <div class="sub-icon">🛺</div><div class="sub-text">Book Auto</div>
                         </div>
                     </div>
@@ -294,12 +289,12 @@
                 <div id="content-health" class="content-section">
                     <div class="section-header">Health Care</div>
                     <div class="sub-grid">
-                        <div class="sub-card view-all-card" onclick="showSafeToast('Coming Soon!')">
+                        <div class="sub-card view-all-card">
                             <div class="sub-icon">➜</div><div class="sub-text">View All<br>Health</div>
                         </div>
-                        <div class="sub-card" onclick="window.location.href='tel:102'">
+                        <a href="tel:102" class="sub-card">
                             <div class="sub-icon">🚑</div><div class="sub-text">Call Ambulance</div>
-                        </div>
+                        </a>
                     </div>
                 </div>
 
@@ -308,9 +303,6 @@
 
         <bottom-nav></bottom-nav>
     </div>
-
-    <!-- IN-APP TOAST -->
-    <div id="custom-toast"></div>
 
     <!-- CORE SCRIPTS -->
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/config.js"></script>
@@ -333,4 +325,22 @@
         };
 
         window.addEventListener('DOMContentLoaded', () => {
-            if (localStorage.getItem('cp_th
+            if (localStorage.getItem('cp_theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                isDarkMode = true;
+            }
+            document.getElementById('dynamic-header').style.background = isDarkMode ? sectionThemes['offers'].dark : sectionThemes['offers'].light;
+
+            setTimeout(() => {
+                const topbar = document.querySelector('city-topbar');
+                if (topbar && topbar.firstElementChild) {
+                    topbar.firstElementChild.style.setProperty('background', 'transparent', 'important');
+                    topbar.firstElementChild.style.setProperty('border', 'none', 'important');
+                }
+            }, 100);
+        });
+
+        // Simplified JS for switching left/right panels (Without URL Routing)
+        function switchCategory(categoryId) {
+            // Update tabs
+            con
