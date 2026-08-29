@@ -14,47 +14,48 @@
             width: 100%;
             height: 480px;
             z-index: 0;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            /* Default Starting Color */
+            background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
             border-bottom-left-radius: 32px;
             border-bottom-right-radius: 32px;
             transition: background 0.6s ease-in-out;
         }
 
-        /* AMAZON STYLE HORIZONTAL MENU (Floating Glass Card) */
-        .horizontal-scroll-container {
-            background: var(--card-bg);
-            border-radius: 16px;
-            margin: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            position: relative;
-            z-index: 2;
-        }
+        /* AMAZON STYLE - SEPARATE FLOATING CARDS */
         .horizontal-scroll {
             display: flex;
             overflow-x: auto;
-            gap: 16px;
+            gap: 12px;
             padding: 16px;
             scrollbar-width: none;
+            position: relative;
+            z-index: 2; /* Keeps it above dynamic background */
         }
         .horizontal-scroll::-webkit-scrollbar { display: none; }
+        
         .scroll-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 64px;
+            min-width: 72px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 12px 6px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08); /* Gives the floating card look */
             cursor: pointer;
             gap: 8px;
             transition: transform 0.2s;
         }
         .scroll-item:active { transform: scale(0.92); }
         .icon-box {
-            width: 52px;
-            height: 52px;
-            border-radius: 16px;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 26px;
+            font-size: 22px;
         }
         .icon-label { font-size: 11px; font-weight: 700; color: var(--text-main); text-align: center; }
 
@@ -80,12 +81,13 @@
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
             transform: scale(0.9);
             opacity: 0.5;
-            /* Premium Glassmorphism Look for Banners */
-            background: rgba(255, 255, 255, 0.15);
+            /* Premium Glassmorphism Look */
+            background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            text-shadow: 0 1px 4px rgba(0,0,0,0.15); /* Ensures text is readable on light backgrounds */
         }
         .banner-card.active-3d {
             transform: scale(1);
@@ -93,7 +95,7 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
 
-        /* Purana Quick Grid & Sections */
+        /* Purana Quick Grid & Sections (Safe and Untouched) */
         .quick-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 0 16px; margin-bottom: 16px; position: relative; z-index: 2; }
         .quick-item { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 12px 8px; text-align: center; cursor: pointer; transition: transform 0.2s; }
         .quick-item:active { transform: scale(0.95); }
@@ -111,73 +113,71 @@
 
         <main style="margin-bottom: 90px;">
             
-            <!-- AMAZON STYLE HORIZONTAL MENU -->
-            <div class="horizontal-scroll-container">
-                <div class="horizontal-scroll">
-                    <div class="scroll-item" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-profile/emergency-sos.html'">
-                        <div class="icon-box" style="background-color: rgba(239, 68, 68, 0.15);">🚨</div>
-                        <span class="icon-label">Emergency</span>
-                    </div>
-                    <div class="scroll-item" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-profile/wallet.html'">
-                        <div class="icon-box" style="background-color: rgba(59, 130, 246, 0.15);">💳</div>
-                        <span class="icon-label">Pay</span>
-                    </div>
-                    <div class="scroll-item" onclick="showToast('Ride module coming soon')">
-                        <div class="icon-box" style="background-color: rgba(245, 158, 11, 0.15);">🛵</div>
-                        <span class="icon-label">Ride</span>
-                    </div>
-                    <div class="scroll-item" onclick="window.location.href='category.html'">
-                        <div class="icon-box" style="background-color: rgba(16, 185, 129, 0.15);">🛒</div>
-                        <span class="icon-label">Grocery</span>
-                    </div>
-                    <div class="scroll-item" onclick="showToast('Medical module coming soon')">
-                        <div class="icon-box" style="background-color: rgba(99, 102, 241, 0.15);">💊</div>
-                        <span class="icon-label">Medical</span>
-                    </div>
-                    <div class="scroll-item" onclick="showToast('Entertainment coming soon')">
-                        <div class="icon-box" style="background-color: rgba(217, 70, 239, 0.15);">🎬</div>
-                        <span class="icon-label">Entertain</span>
-                    </div>
-                    <div class="scroll-item" onclick="window.location.href='category.html'">
-                        <div class="icon-box" style="background-color: rgba(249, 115, 22, 0.15);">🛠️</div>
-                        <span class="icon-label">Services</span>
-                    </div>
-                    <div class="scroll-item" onclick="showToast('Education module coming soon')">
-                        <div class="icon-box" style="background-color: rgba(168, 85, 247, 0.15);">📚</div>
-                        <span class="icon-label">Education</span>
-                    </div>
+            <!-- HORIZONTAL MENU (Now in Separate Floating Cards!) -->
+            <div class="horizontal-scroll">
+                <div class="scroll-item" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-profile/emergency-sos.html'">
+                    <div class="icon-box" style="background-color: rgba(239, 68, 68, 0.15);">🚨</div>
+                    <span class="icon-label">Emergency</span>
+                </div>
+                <div class="scroll-item" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-profile/wallet.html'">
+                    <div class="icon-box" style="background-color: rgba(59, 130, 246, 0.15);">💳</div>
+                    <span class="icon-label">Pay</span>
+                </div>
+                <div class="scroll-item" onclick="showToast('Ride module coming soon')">
+                    <div class="icon-box" style="background-color: rgba(245, 158, 11, 0.15);">🛵</div>
+                    <span class="icon-label">Ride</span>
+                </div>
+                <div class="scroll-item" onclick="window.location.href='category.html'">
+                    <div class="icon-box" style="background-color: rgba(16, 185, 129, 0.15);">🛒</div>
+                    <span class="icon-label">Grocery</span>
+                </div>
+                <div class="scroll-item" onclick="showToast('Medical module coming soon')">
+                    <div class="icon-box" style="background-color: rgba(99, 102, 241, 0.15);">💊</div>
+                    <span class="icon-label">Medical</span>
+                </div>
+                <div class="scroll-item" onclick="showToast('Entertainment coming soon')">
+                    <div class="icon-box" style="background-color: rgba(217, 70, 239, 0.15);">🎬</div>
+                    <span class="icon-label">Entertain</span>
+                </div>
+                <div class="scroll-item" onclick="window.location.href='category.html'">
+                    <div class="icon-box" style="background-color: rgba(249, 115, 22, 0.15);">🛠️</div>
+                    <span class="icon-label">Services</span>
+                </div>
+                <div class="scroll-item" onclick="showToast('Education module coming soon')">
+                    <div class="icon-box" style="background-color: rgba(168, 85, 247, 0.15);">📚</div>
+                    <span class="icon-label">Education</span>
                 </div>
             </div>
 
-            <!-- NEW: 3D DYNAMIC BANNER CAROUSEL -->
+            <!-- 3D DYNAMIC BANNER CAROUSEL -->
             <div class="banner-carousel" id="3d-carousel">
                 
-                <!-- 1. Local Network (Blue Theme) -->
-                <div class="banner-card active-3d" data-theme="linear-gradient(135deg, #2563eb 0%, #1e40af 100%)">
-                    <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; opacity: 0.9; margin-bottom: 6px; letter-spacing: 0.5px;">Local Network</div>
+                <!-- 1. Local Network (Light Vibrant Sky Blue) -->
+                <div class="banner-card active-3d" data-theme="linear-gradient(135deg, #38bdf8 0%, #0284c7 100%)">
+                    <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; opacity: 0.95; margin-bottom: 6px; letter-spacing: 0.5px;">Local Network</div>
                     <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Bhatpara Updates 📢</h2>
-                    <p style="font-size: 13px; opacity: 0.95; line-height: 1.4;">Stay connected with local FB channels and neighborhood alerts instantly.</p>
+                    <p style="font-size: 13px; opacity: 1; line-height: 1.4;">Stay connected with local FB channels and neighborhood alerts instantly.</p>
                 </div>
                 
-                <!-- 2. Live Channel (Red Theme) -->
-                <div class="banner-card" data-theme="linear-gradient(135deg, #e11d48 0%, #9f1239 100%)">
-                    <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; opacity: 0.9; margin-bottom: 6px; letter-spacing: 0.5px;">Now Streaming</div>
+                <!-- 2. Live Channel (Light Vibrant Coral/Orange) -->
+                <div class="banner-card" data-theme="linear-gradient(135deg, #fb923c 0%, #ea580c 100%)">
+                    <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; opacity: 0.95; margin-bottom: 6px; letter-spacing: 0.5px;">Now Streaming</div>
                     <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Live Channels 🔴</h2>
-                    <p style="font-size: 13px; opacity: 0.95; line-height: 1.4;">Watch your favorite live broadcasts and breaking news anytime.</p>
+                    <p style="font-size: 13px; opacity: 1; line-height: 1.4;">Watch your favorite live broadcasts and breaking news anytime.</p>
                 </div>
 
-                <!-- 3. Top Headlines (Teal/Green Theme) -->
-                <div class="banner-card" data-theme="linear-gradient(135deg, #0d9488 0%, #115e59 100%)">
+                <!-- 3. Top Headlines (DEEP PREMIUM PURPLE - The Contrast Card!) -->
+                <div class="banner-card" data-theme="linear-gradient(135deg, #7e22ce 0%, #4c1d95 100%)">
                     <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; opacity: 0.9; margin-bottom: 6px; letter-spacing: 0.5px;">Trending Now</div>
                     <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Top Headlines 📰</h2>
                     <p style="font-size: 13px; opacity: 0.95; line-height: 1.4;">Daily catch-up on national and global top stories curated for you.</p>
                 </div>
 
-                <!-- 4. Entertainment (Purple Theme) -->
-                <div class="banner-card" data-theme="linear-gradient(135deg, #9333ea 0%, #6b21a8 100%)">
-                    <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; opacity: 0.9; margin-bottom: 6px; letter-spacing: 0.5px;">Chill & Relax</div>
+                <!-- 4. Entertainment (Light Vibrant Mint/Green) -->
+                <div class="banner-card" data-theme="linear-gradient(135deg, #34d399 0%, #059669 100%)">
+                    <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; opacity: 0.95; margin-bottom: 6px; letter-spacing: 0.5px;">Chill & Relax</div>
                     <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Entertainment 🍿</h2>
-                    <p style="font-size: 13px; opacity: 0.95; line-height: 1.4;">Movies, shows, and viral content to make your day better.</p>
+                    <p style="font-size: 13px; opacity: 1; line-height: 1.4;">Movies, shows, and viral content to make your day better.</p>
                 </div>
 
             </div>
@@ -249,19 +249,15 @@
             const dynamicBg = document.getElementById('dynamic-header-bg');
 
             function syncColors() {
-                // Find center point of the carousel
                 let centerPoint = carousel.scrollLeft + (carousel.clientWidth / 2);
                 
                 cards.forEach(card => {
-                    // Find center point of each card
                     let cardCenter = card.offsetLeft + (card.clientWidth / 2) - carousel.offsetLeft;
                     
-                    // If card is in the center
                     if (Math.abs(centerPoint - cardCenter) < (card.clientWidth / 2)) {
-                        cards.forEach(c => c.classList.remove('active-3d')); // Reset all
-                        card.classList.add('active-3d'); // Make current card 3D
+                        cards.forEach(c => c.classList.remove('active-3d'));
+                        card.classList.add('active-3d'); 
                         
-                        // Change Global Background Theme
                         let themeColor = card.getAttribute('data-theme');
                         dynamicBg.style.background = themeColor;
                     }
@@ -269,7 +265,7 @@
             }
 
             carousel.addEventListener('scroll', syncColors);
-            syncColors(); // Initial call
+            syncColors(); 
         });
     </script>
 </body>
