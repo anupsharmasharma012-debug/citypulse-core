@@ -4,16 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CityPulse - Home</title>
-    <!-- Core Global Design System -->
     <link rel="stylesheet" href="https://anupsharmasharma012-debug.github.io/citypulse-core/style.css">
     <style>
-        /* Home Specific Styles */
+        /* Horizontal Scroll Menu Styles */
+        .horizontal-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 16px;
+            padding: 20px 16px;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+            background: var(--bg-color);
+        }
+        .horizontal-scroll::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+        .scroll-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 64px;
+            cursor: pointer;
+            gap: 8px;
+            transition: transform 0.2s;
+        }
+        .scroll-item:active { transform: scale(0.92); }
+        .icon-box {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 26px;
+        }
+        .icon-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-align: center;
+            letter-spacing: 0.2px;
+        }
+
+        /* Home Specific Styles (Purana code safe hai) */
         .hero-banner {
             background: linear-gradient(135deg, var(--accent-blue), #1d4ed8);
             border-radius: 16px;
             padding: 20px;
             color: white;
-            margin: 16px;
+            margin: 0 16px 16px 16px; /* Adjusted margin */
             box-shadow: 0 10px 20px rgba(37,99,235,0.15);
         }
         .quick-grid {
@@ -52,15 +91,59 @@
         <!-- MAIN CONTENT AREA -->
         <main style="margin-bottom: 90px;">
             
-            <!-- HERO PROMO BANNER -->
+            <!-- NEW: AMAZON STYLE HORIZONTAL SCROLLING MENU -->
+            <div class="horizontal-scroll">
+                <!-- 1. Emergency (Light Red) -->
+                <div class="scroll-item" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-profile/emergency-sos.html'">
+                    <div class="icon-box" style="background-color: rgba(239, 68, 68, 0.15);">🚨</div>
+                    <span class="icon-label">Emergency</span>
+                </div>
+                <!-- 2. Pay (Light Blue) -->
+                <div class="scroll-item" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-profile/wallet.html'">
+                    <div class="icon-box" style="background-color: rgba(59, 130, 246, 0.15);">💳</div>
+                    <span class="icon-label">Pay</span>
+                </div>
+                <!-- 3. Ride (Light Yellow/Amber) -->
+                <div class="scroll-item" onclick="showToast('Ride module coming soon')">
+                    <div class="icon-box" style="background-color: rgba(245, 158, 11, 0.15);">🛵</div>
+                    <span class="icon-label">Ride</span>
+                </div>
+                <!-- 4. Grocery (Light Green) -->
+                <div class="scroll-item" onclick="window.location.href='category.html'">
+                    <div class="icon-box" style="background-color: rgba(16, 185, 129, 0.15);">🛒</div>
+                    <span class="icon-label">Grocery</span>
+                </div>
+                <!-- 5. Medical (Light Indigo) -->
+                <div class="scroll-item" onclick="showToast('Medical module coming soon')">
+                    <div class="icon-box" style="background-color: rgba(99, 102, 241, 0.15);">💊</div>
+                    <span class="icon-label">Medical</span>
+                </div>
+                <!-- 6. Entertainment (Light Pink/Fuchsia) -->
+                <div class="scroll-item" onclick="showToast('Entertainment coming soon')">
+                    <div class="icon-box" style="background-color: rgba(217, 70, 239, 0.15);">🎬</div>
+                    <span class="icon-label">Entertain</span>
+                </div>
+                <!-- 7. Services (Light Orange) -->
+                <div class="scroll-item" onclick="window.location.href='category.html'">
+                    <div class="icon-box" style="background-color: rgba(249, 115, 22, 0.15);">🛠️</div>
+                    <span class="icon-label">Services</span>
+                </div>
+                <!-- 8. Education (Light Purple) -->
+                <div class="scroll-item" onclick="showToast('Education module coming soon')">
+                    <div class="icon-box" style="background-color: rgba(168, 85, 247, 0.15);">📚</div>
+                    <span class="icon-label">Education</span>
+                </div>
+            </div>
+
+            <!-- HERO PROMO BANNER (Purana wala, intact hai) -->
             <div class="hero-banner">
                 <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; opacity: 0.9; margin-bottom: 4px;">Welcome to Bhatpara</div>
                 <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 8px;">Your City, In Your Pocket 🚀</h2>
                 <p style="font-size: 12px; opacity: 0.9; line-height: 1.4;">Discover local shops, services, trusted news, and emergency assistance instantly.</p>
             </div>
 
-            <!-- QUICK SERVICE GRID -->
-            <div class="section-title">Quick Services</div>
+            <!-- QUICK SERVICE GRID (Purana wala, intact hai) -->
+            <div class="section-title">Quick Links</div>
             <div class="quick-grid">
                 <div class="quick-item" onclick="window.location.href='category.html'">
                     <div style="font-size: 24px; margin-bottom: 6px;">🛍️</div>
@@ -74,7 +157,7 @@
                     <div style="font-size: 24px; margin-bottom: 6px;">🏛️</div>
                     <div style="font-size: 11px; font-weight: 700; color: var(--text-main);">Civic</div>
                 </div>
-                <div class="quick-item" onclick="window.location.href='emergency-sos.html'">
+                <div class="quick-item" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-profile/emergency-sos.html'">
                     <div style="font-size: 24px; margin-bottom: 6px;">🚨</div>
                     <div style="font-size: 11px; font-weight: 700; color: var(--accent-red);">SOS</div>
                 </div>
