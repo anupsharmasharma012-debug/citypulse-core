@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CityPulse - Local & Global Smart Search</title>
+    <title>CityPulse - Smart Local & Global Search</title>
     <link rel="stylesheet" href="https://anupsharmasharma012-debug.github.io/citypulse-core/style.css">
     <style>
         :root {
@@ -14,12 +14,12 @@
         }
         body, .max-width-container { background-color: var(--bg-light); }
 
-        /* Search Header & Scope Selector */
+        /* Sticky Search Header */
         .search-header-box { background: var(--card-bg); padding: 16px; border-bottom: 1px solid var(--card-border); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
         .search-input-wrapper { display: flex; align-items: center; background: var(--bg-color); border: 2px solid var(--cp-blue); border-radius: 14px; padding: 10px 14px; gap: 10px; }
         .main-search-input { flex: 1; border: none; background: transparent; outline: none; font-size: 14px; font-weight: 700; color: var(--text-main); }
         
-        /* Location Scope Toggles (Local to Vocal Concept) */
+        /* Proximity Scope Toggles (Local to Vocal Feature) */
         .scope-container { display: flex; gap: 8px; margin-top: 12px; overflow-x: auto; scrollbar-width: none; }
         .scope-container::-webkit-scrollbar { display: none; }
         .scope-pill { background: var(--bg-color); border: 1px solid var(--card-border); padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 800; color: var(--text-muted); cursor: pointer; white-space: nowrap; transition: 0.2s; }
@@ -28,25 +28,25 @@
         /* Sections & Cards */
         .section-title { font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin: 20px 16px 10px 16px; letter-spacing: 0.5px; display: flex; justify-content: space-between; align-items: center; }
         
-        .suggestion-card { background: var(--card-bg); border-radius: 14px; padding: 12px 16px; margin: 0 16px 8px 16px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--card-border); box-shadow: 0 2px 6px rgba(0,0,0,0.02); cursor: pointer; transition: transform 0.1s; }
+        .suggestion-card { background: var(--card-bg); border-radius: 14px; padding: 12px 16px; margin: 0 16px 8px 16px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--card-border); box-shadow: 0 2px 6px rgba(0,0,0,0.02); cursor: pointer; }
         .suggestion-card:active { transform: scale(0.98); }
 
         /* Trending Local Chips */
         .trending-chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 16px; }
         .t-chip { background: var(--card-bg); border: 1px solid var(--card-border); padding: 8px 14px; border-radius: 12px; font-size: 12px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 6px; cursor: pointer; }
         
-        /* Product Area-wise Availability Box */
+        /* Area-wise Availability Box */
         .area-availability-box { background: linear-gradient(135deg, rgba(16,185,129,0.05) 0%, rgba(59,130,246,0.05) 100%); border: 1px solid rgba(16,185,129,0.2); border-radius: 16px; margin: 16px; padding: 16px; }
     </style>
 </head>
 <body>
     <div class="max-width-container" style="min-height: 100vh;">
         
-        <!-- TOP SEARCH BAR & SCOPE CONTAINER -->
+        <!-- TOP SEARCH BAR & PROXIMITY SCOPE SELECTOR -->
         <div class="search-header-box">
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
                 <button onclick="window.history.back()" style="background: transparent; border: none; font-size: 20px; cursor: pointer; color: var(--text-main);">←</button>
-                <span style="font-size: 16px; font-weight: 800;">Smart Search</span>
+                <span style="font-size: 16px; font-weight: 800;">Smart Local Search</span>
             </div>
 
             <!-- Global Input Field -->
@@ -56,21 +56,21 @@
                 <span style="font-size: 20px; cursor: pointer;" onclick="showToast('Listening... Speak now 🎙️')">🎙️</span>
             </div>
 
-            <!-- Local to Vocal Scope Selector -->
+            <!-- Proximity / Distance Radius Scope Selector -->
             <div class="scope-container">
-                <div class="scope-pill active" onclick="setScope('local', this)">📍 Local (Bhatpara)</div>
-                <div class="scope-pill" onclick="setScope('state', this)">🗺️ State (West Bengal)</div>
-                <div class="scope-pill" onclick="setScope('national', this)">🇮🇳 National</div>
+                <div class="scope-pill active" onclick="setScope('local', this)">📍 Local (0-5 km) • Ward 12</div>
+                <div class="scope-pill" onclick="setScope('district', this)">🗺️ District / State (5-50 km)</div>
+                <div class="scope-pill" onclick="setScope('national', this)">🇮🇳 National Shipping</div>
             </div>
         </div>
 
         <main style="padding-bottom: 90px;">
             
-            <!-- RECENT SEARCH HISTORY SECTION -->
+            <!-- RECENT SEARCH HISTORY -->
             <div id="history-section">
                 <div class="section-title">
                     <span>Recent Searches</span>
-                    <span style="color: var(--accent-red); cursor: pointer; font-size: 10px;" onclick="clearHistory()">Clear History</span>
+                    <span style="color: #ef4444; cursor: pointer; font-size: 10px;" onclick="clearHistory()">Clear History</span>
                 </div>
                 <div id="history-list">
                     <div class="suggestion-card" onclick="fillSearch('Amul Milk')">
@@ -90,14 +90,14 @@
                 </div>
             </div>
 
-            <!-- AREA-WISE PRODUCT AVAILABILITY (Local to Vocal Feature) -->
+            <!-- LOCAL AREA STOCK & AVAILABILITY (Local to Vocal Feature) -->
             <div class="area-availability-box">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                     <div style="font-size: 13px; font-weight: 800; color: var(--cp-green);">📦 Local Area Stock & Availability</div>
-                    <span style="font-size: 10px; background: rgba(16,185,129,0.1); color: var(--cp-green); padding: 2px 8px; border-radius: 6px; font-weight: 800;">Ward 12</span>
+                    <span style="font-size: 10px; background: rgba(16,185,129,0.1); color: var(--cp-green); padding: 2px 8px; border-radius: 6px; font-weight: 800;">Bhatpara</span>
                 </div>
-                <p style="font-size: 11px; color: var(--text-muted); margin: 0 0 12px 0; line-height: 1.4;">Check which local shops near you have your product in stock right now.</p>
-                <button class="cp-btn-primary" style="padding: 10px; font-size: 12px;" onclick="showToast('Scanning nearby local shops in Bhatpara...')">Check Area-wise Availability ➔</button>
+                <p style="font-size: 11px; color: var(--text-muted); margin: 0 0 12px 0; line-height: 1.4;">Find which nearby local shops or service workers have what you need right now.</p>
+                <button class="cp-btn-primary" style="padding: 10px; font-size: 12px;" onclick="showToast('Scanning nearby local shops in Bhatpara...')">Scan Local Availability ➔</button>
             </div>
 
             <!-- TRENDING LOCAL SEARCHES -->
@@ -107,18 +107,17 @@
                 <div class="t-chip" onclick="fillSearch('Fresh Vegetables')">🥬 Fresh Vegetables</div>
                 <div class="t-chip" onclick="fillSearch('Auto Ride')">🛺 Auto Stand Bhatpara</div>
                 <div class="t-chip" onclick="fillSearch('Medicines 24x7')">💊 24x7 Medical Store</div>
-                <div class="t-chip" onclick="fillSearch('Garment Wholesale')">👕 Garment Wholesale</div>
             </div>
 
-            <!-- AUTO-COMPLETE / DYNAMIC RESULTS CONTAINER (Hidden by default, shows on typing) -->
+            <!-- AUTO-COMPLETE RESULTS (Hidden by default, shows on typing) -->
             <div id="dynamic-results" style="display: none; margin-top: 10px;">
                 <div class="section-title">Search Results</div>
-                <div class="suggestion-card" onclick="window.location.href='cart.html'">
+                <div class="suggestion-card" onclick="window.location.href='https://anupsharmasharma012-debug.github.io/citypulse-profile/cart.html'">
                     <div style="display: flex; gap: 12px; align-items: center;">
                         <span style="font-size: 22px;">🛍️</span>
                         <div>
                             <div style="font-size: 13px; font-weight: 800;" id="result-title">Result Item</div>
-                            <div style="font-size: 10px; color: var(--cp-green); font-weight: 700;">Available at 3 nearby local stores</div>
+                            <div style="font-size: 10px; color: var(--cp-green); font-weight: 700;">Available at nearby local stores (15 mins delivery)</div>
                         </div>
                     </div>
                     <span style="font-size: 12px; color: var(--cp-blue); font-weight: 800;">View ➔</span>
@@ -142,14 +141,14 @@
             }
         });
 
-        // Scope Selector Logic (Local vs State vs National)
+        // Proximity Scope Filter Logic
         function setScope(scope, element) {
             document.querySelectorAll('.scope-pill').forEach(p => p.classList.remove('active'));
             element.classList.add('active');
-            showToast(`Search scope changed to: ${scope.toUpperCase()}`);
+            showToast(`Search radius updated to: ${scope.toUpperCase()}`);
         }
 
-        // Search Input & Auto-complete Simulation
+        // Live Typing & Auto-complete simulation
         function handleTyping(val) {
             const resultsBox = document.getElementById('dynamic-results');
             const historyBox = document.getElementById('history-section');
