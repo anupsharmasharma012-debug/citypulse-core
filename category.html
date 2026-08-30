@@ -20,7 +20,7 @@
             transition: background 0.3s ease;
         }
 
-        /* 🛒 NEW: PREMIUM CART BUTTON CSS */
+        /* 🛒 PREMIUM CART BUTTON CSS */
         .cart-btn-wrapper {
             position: absolute;
             top: 12px;
@@ -28,6 +28,7 @@
             z-index: 105;
             cursor: pointer;
             -webkit-tap-highlight-color: transparent;
+            text-decoration: none;
         }
         .cart-icon-bg {
             background: rgba(255, 255, 255, 0.9);
@@ -49,7 +50,7 @@
             width: 18px; height: 18px;
             border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
-            border: 2px solid #ffffff; /* White border to cut into the icon */
+            border: 2px solid #ffffff;
         }
         /* Dark Mode Cart Fix */
         body.dark-mode .cart-icon-bg { background: rgba(31, 41, 55, 0.9); border-color: rgba(255,255,255,0.1); }
@@ -156,9 +157,8 @@
         <!-- HEADER -->
         <div class="top-gradient-bg" id="dynamic-header">
             
-            <!-- 🛒 THE NEW CART BUTTON -->
-            <!-- Ispe URL de sakte hain jab Cart page ready ho jaye. Abhi ke liye empty rakha hai. -->
-            <a href="#" class="cart-btn-wrapper" onclick="alert('Opening Cart...')">
+            <!-- 🛒 THE CART BUTTON (Connected to Profile Repo) -->
+            <a href="https://anupsharmasharma012-debug.github.io/citypulse-profile/cart.html" class="cart-btn-wrapper">
                 <div class="cart-icon-bg">🛒</div>
                 <div class="cart-badge">2</div>
             </a>
@@ -305,6 +305,9 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             document.getElementById('dynamic-header').style.background = topBarColors['offers'];
+            if (localStorage.getItem('cp_theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
         });
 
         function switchCategory(categoryId, clickedElement) {
