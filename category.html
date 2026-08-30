@@ -21,7 +21,7 @@
         .cart-icon-bg { background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(0,0,0,0.05); width: 38px; height: 38px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
         .cart-badge { position: absolute; top: -4px; right: -4px; background: #ef4444; color: white; font-size: 10px; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #ffffff; }
 
-        /* Proximity Filter Bar (Local to Vocal Feature) */
+        /* Proximity Filter Bar */
         .proximity-bar { display: flex; gap: 8px; padding: 8px 16px 12px 16px; overflow-x: auto; scrollbar-width: none; background: rgba(255,255,255,0.5); }
         .proximity-bar::-webkit-scrollbar { display: none; }
         .prox-pill { background: var(--card-bg); border: 1px solid var(--card-border); padding: 5px 12px; border-radius: 16px; font-size: 10px; font-weight: 800; color: var(--text-muted); cursor: pointer; white-space: nowrap; }
@@ -49,7 +49,6 @@
         .section-header { font-size: 13px; font-weight: 800; color: var(--text-main); margin-bottom: 12px; }
         .sub-grid { display: flex; flex-direction: column; gap: 10px; }
         
-        /* Enhanced Product Card with Proximity Tags */
         .product-card { background: var(--bg-color); border: 1px solid var(--card-border); border-radius: 14px; padding: 12px; display: flex; gap: 10px; align-items: center; cursor: pointer; text-decoration: none; color: inherit; }
         .product-card:active { transform: scale(0.98); }
         .p-icon { width: 44px; height: 44px; background: rgba(59,130,246,0.1); border-radius: 10px; display: flex; justify-content: center; align-items: center; font-size: 22px; }
@@ -57,11 +56,10 @@
         .p-name { font-size: 12px; font-weight: 800; color: var(--text-main); margin-bottom: 2px; }
         .p-price { font-size: 13px; font-weight: 900; color: var(--text-main); }
         
-        /* Proximity Delivery Badges */
         .delivery-badge { font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 6px; display: inline-block; margin-top: 4px; }
-        .badge-local { background: rgba(16, 185, 129, 0.1); color: #10b981; } /* 15 mins */
-        .badge-hub { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }   /* Same Day */
-        .badge-national { background: rgba(107, 114, 128, 0.1); color: #6b7280; } /* 3-5 days */
+        .badge-local { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+        .badge-hub { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+        .badge-national { background: rgba(107, 114, 128, 0.1); color: #6b7280; }
     </style>
 </head>
 <body>
@@ -92,22 +90,85 @@
 
         <main class="split-layout">
             
-            <!-- LEFT PANEL -->
+            <!-- LEFT PANEL: EXACT ORIGINAL SEQUENCE -->
             <div class="left-panel">
-                <div class="side-tab active" onclick="switchCategory('daily', this)"><div class="tab-icon">🛒</div><div class="tab-text">Groceries</div></div>
+                <div class="side-tab active" onclick="switchCategory('offers', this)"><div class="tab-icon">🔥</div><div class="tab-text">Promos</div></div>
+                <div class="side-tab" onclick="switchCategory('sos', this)"><div class="tab-icon">🚨</div><div class="tab-text">SOS</div></div>
+                <div class="side-tab" onclick="switchCategory('news', this)"><div class="tab-icon">📰</div><div class="tab-text">News</div></div>
+                <div class="side-tab" onclick="switchCategory('entertainment', this)"><div class="tab-icon">🎬</div><div class="tab-text">Entertain</div></div>
+                <div class="side-tab" onclick="switchCategory('daily', this)"><div class="tab-icon">🛒</div><div class="tab-text">Groceries</div></div>
                 <div class="side-tab" onclick="switchCategory('services', this)"><div class="tab-icon">🔌</div><div class="tab-text">Services</div></div>
+                <div class="side-tab" onclick="switchCategory('transport', this)"><div class="tab-icon">🛺</div><div class="tab-text">Transport</div></div>
                 <div class="side-tab" onclick="switchCategory('health', this)"><div class="tab-icon">💊</div><div class="tab-text">Health</div></div>
             </div>
 
-            <!-- RIGHT PANEL -->
+            <!-- RIGHT PANEL: CONTENT SECTIONS IN EXACT SEQUENCE -->
             <div class="right-panel">
                 
-                <!-- GROCERIES CATEGORY -->
-                <div id="content-daily" class="content-section active">
+                <!-- 1. PROMOS -->
+                <div id="content-offers" class="content-section active">
+                    <div class="section-header">Top Deals & Promos</div>
+                    <div class="sub-grid">
+                        <a href="https://anupsharmasharma012-debug.github.io/citypulse-profile/wallet.html" class="product-card" data-prox="local">
+                            <div class="p-icon">🎟️</div>
+                            <div class="p-info">
+                                <div class="p-name">CityPulse Pay Cashback Offer</div>
+                                <div class="p-price">Save ₹50 on first wallet load</div>
+                                <div><span class="delivery-badge badge-local">⚡ Instant Active</span></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2. SOS -->
+                <div id="content-sos" class="content-section">
+                    <div class="section-header">Emergency (SOS) Services</div>
+                    <div class="sub-grid">
+                        <a href="https://anupsharmasharma012-debug.github.io/citypulse-profile/emergency-sos.html" class="product-card" data-prox="local">
+                            <div class="p-icon" style="background: rgba(239,68,68,0.1); color: #ef4444;">🚨</div>
+                            <div class="p-info">
+                                <div class="p-name">Open Emergency SOS Hub</div>
+                                <div class="p-price">24x7 Helpline Access</div>
+                                <div><span class="delivery-badge badge-local">📍 Bhatpara Jurisdiction</span></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. NEWS -->
+                <div id="content-news" class="content-section">
+                    <div class="section-header">News & Local Updates</div>
+                    <div class="sub-grid">
+                        <a href="#" class="product-card" data-prox="local">
+                            <div class="p-icon" style="background: rgba(59,130,246,0.1);">📰</div>
+                            <div class="p-info">
+                                <div class="p-name">Bhatpara Ward 12 Bulletin</div>
+                                <div class="p-price">Local Civic News</div>
+                                <div><span class="delivery-badge badge-local">⚡ Live Feed</span></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4. ENTERTAINMENT -->
+                <div id="content-entertainment" class="content-section">
+                    <div class="section-header">Entertainment & Media</div>
+                    <div class="sub-grid">
+                        <a href="#" class="product-card" data-prox="local">
+                            <div class="p-icon" style="background: rgba(168,85,247,0.1);">🎬</div>
+                            <div class="p-info">
+                                <div class="p-name">Local Independent Music & Shows</div>
+                                <div class="p-price">Digital Stream</div>
+                                <div><span class="delivery-badge badge-local">⚡ Instant Play</span></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 5. GROCERIES -->
+                <div id="content-daily" class="content-section">
                     <div class="section-header">Daily Needs & Groceries</div>
                     <div class="sub-grid">
-                        
-                        <!-- Local Product Item -->
                         <a href="https://anupsharmasharma012-debug.github.io/citypulse-profile/cart.html" class="product-card" data-prox="local">
                             <div class="p-icon">🥛</div>
                             <div class="p-info">
@@ -116,8 +177,6 @@
                                 <div><span class="delivery-badge badge-local">⚡ 15 Mins • Ward 12 Local Store</span></div>
                             </div>
                         </a>
-
-                        <!-- Hub Product Item -->
                         <a href="https://anupsharmasharma012-debug.github.io/citypulse-profile/cart.html" class="product-card" data-prox="hub">
                             <div class="p-icon" style="background: rgba(59,130,246,0.1);">🌾</div>
                             <div class="p-info">
@@ -126,21 +185,10 @@
                                 <div><span class="delivery-badge badge-hub">🚚 Same Day • Barrackpore Hub</span></div>
                             </div>
                         </a>
-
-                        <!-- National Product Item -->
-                        <a href="https://anupsharmasharma012-debug.github.io/citypulse-profile/cart.html" class="product-card" data-prox="national">
-                            <div class="p-icon" style="background: rgba(107,114,128,0.1);">☕</div>
-                            <div class="p-info">
-                                <div class="p-name">Tata Coffee Grand (50g)</div>
-                                <div class="p-price">₹140</div>
-                                <div><span class="delivery-badge badge-national">📦 3 Days • National Dispatch</span></div>
-                            </div>
-                        </a>
-
                     </div>
                 </div>
 
-                <!-- SERVICES CATEGORY -->
+                <!-- 6. SERVICES -->
                 <div id="content-services" class="content-section">
                     <div class="section-header">Home Services</div>
                     <div class="sub-grid">
@@ -155,7 +203,22 @@
                     </div>
                 </div>
 
-                <!-- HEALTH CATEGORY -->
+                <!-- 7. TRANSPORT -->
+                <div id="content-transport" class="content-section">
+                    <div class="section-header">Transport & Auto</div>
+                    <div class="sub-grid">
+                        <a href="#" class="product-card" data-prox="local">
+                            <div class="p-icon" style="background: rgba(234,179,8,0.1);">🛺</div>
+                            <div class="p-info">
+                                <div class="p-name">Book Local Auto Ride</div>
+                                <div class="p-price">Metered Fare</div>
+                                <div><span class="delivery-badge badge-local">⚡ Instant Pickup</span></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 8. HEALTH -->
                 <div id="content-health" class="content-section">
                     <div class="section-header">Health & Pharmacy</div>
                     <div class="sub-grid">
@@ -192,7 +255,6 @@
             document.getElementById('content-' + catId).classList.add('active');
         }
 
-        // Proximity Filter Logic (Local vs Hub vs National)
         function filterProximity(type, pillEl) {
             document.querySelectorAll('.prox-pill').forEach(p => p.classList.remove('active'));
             pillEl.classList.add('active');
