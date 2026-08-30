@@ -3,60 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CityPulse - Explore</title>
+    <title>CityPulse - Explore & Discover</title>
     <link rel="stylesheet" href="https://anupsharmasharma012-debug.github.io/citypulse-core/style.css">
+    <style>
+        :root {
+            --bg-light: #f8fafc;
+            --cp-blue: #3b82f6;
+            --cp-orange: #f59e0b;
+            --cp-green: #10b981;
+        }
+        body, .max-width-container { background-color: var(--bg-light); }
+
+        /* Explore Header Banner */
+        .explore-banner { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 20px 16px; color: white; border-bottom-left-radius: 24px; border-bottom-right-radius: 24px; position: relative; }
+        .location-selector { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; opacity: 0.9; margin-bottom: 6px; }
+
+        /* Story / Quick Categories Pills */
+        .story-scroll { display: flex; gap: 12px; padding: 16px; overflow-x: auto; scrollbar-width: none; background: var(--card-bg); border-bottom: 1px solid var(--card-border); }
+        .story-scroll::-webkit-scrollbar { display: none; }
+        .story-item { display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; min-width: 65px; }
+        .story-circle { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%); border: 2px solid var(--cp-blue); display: flex; justify-content: center; align-items: center; font-size: 24px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .story-label { font-size: 10px; font-weight: 800; color: var(--text-main); text-align: center; }
+
+        /* Feed Section Cards */
+        .feed-section-title { font-size: 13px; font-weight: 900; color: var(--text-main); margin: 20px 16px 10px 16px; text-transform: uppercase; letter-spacing: 0.5px; display: flex; justify-content: space-between; align-items: center; }
+        
+        .feed-card { background: var(--card-bg); border-radius: 16px; margin: 0 16px 16px 16px; overflow: hidden; border: 1px solid var(--card-border); box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+        .feed-img-placeholder { height: 140px; background: linear-gradient(135deg, #e0e7ff 0%, #fae8ff 100%); display: flex; justify-content: center; align-items: center; font-size: 40px; position: relative; }
+        .feed-tag { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); color: white; font-size: 9px; font-weight: 800; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; }
+        
+        .feed-content { padding: 16px; }
+        .feed-title { font-size: 15px; font-weight: 900; color: var(--text-main); margin-bottom: 4px; }
+        .feed-desc { font-size: 12px; color: var(--text-muted); font-weight: 600; line-height: 1.4; margin-bottom: 12px; }
+        
+        .feed-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--card-border); padding-top: 12px; }
+    </style>
 </head>
 <body>
-    <div class="max-width-container">
-        <!-- BACK BUTTON HEADER -->
-        <city-topbar title="Explore Area"></city-topbar>
+    <div class="max-width-container" style="min-height: 100vh;">
         
-        <main style="padding: 10px 16px; margin-bottom: 80px;" class="flex-column gap-4">
+        <!-- EXPLORE HEADER -->
+        <div class="explore-banner">
+            <div class="location-selector">
+                <span>📍 Bhatpara, West Bengal</span> <span>▼</span>
+            </div>
+            <h1 style="margin: 0; font-size: 20px; font-weight: 900;">Discover CityPulse</h1>
+            <p style="margin: 4px 0 0 0; font-size: 12px; opacity: 0.8; font-weight: 600;">What's happening around your neighborhood today</p>
+        </div>
+
+        <!-- QUICK STORY PILLS -->
+        <div class="story-scroll">
+            <div class="story-item" onclick="showToast('Showing Live Updates')">
+                <div class="story-circle" style="border-color: #ef4444;">🔴</div>
+                <div class="story-label">Live Feed</div>
+            </div>
+            <div class="story-item" onclick="showToast('Opening Weather...')">
+                <div class="story-circle" style="border-color: #f59e0b;">🌤️</div>
+                <div class="story-label">Weather</div>
+            </div>
+            <div class="story-item" onclick="showToast('Opening Offers...')">
+                <div class="story-circle" style="border-color: #ec4899;">🎁</div>
+                <div class="story-label">Offers</div>
+            </div>
+            <div class="story-item" onclick="showToast('Opening Civic Updates...')">
+                <div class="story-circle" style="border-color: #3b82f6;">🏛️</div>
+                <div class="story-label">Civic</div>
+            </div>
+            <div class="story-item" onclick="showToast('Opening Local Jobs...')">
+                <div class="story-circle" style="border-color: #10b981;">💼</div>
+                <div class="story-label">Local Jobs</div>
+            </div>
+        </div>
+
+        <main style="padding-bottom: 90px;">
             
-            <!-- Map Placeholder -->
-            <div style="height: 150px; background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Google_Maps_icon.svg/1024px-Google_Maps_icon.svg.png') center/cover; border-radius: 16px; border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: center; position: relative;">
-                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); border-radius: 16px;"></div>
-                <div style="z-index: 1; text-align: center;">
-                    <span style="font-size: 24px;">📍</span>
-                    <div style="color: #fff; font-weight: 700; font-size: 14px;">Bhatpara Live Map</div>
-                    <button class="cp-btn-primary" style="padding: 6px 12px; margin-top: 8px; font-size: 11px;">View Area</button>
+            <!-- SECTION 1: TRENDING LOCAL UPDATE -->
+            <div class="feed-section-title">
+                <span>🔥 Trending Around You</span>
+                <span style="font-size: 11px; color: var(--cp-blue); cursor: pointer;">See All</span>
+            </div>
+
+            <div class="feed-card">
+                <div class="feed-img-placeholder">
+                    <span>🚧</span>
+                    <div class="feed-tag">Traffic Advisory</div>
+                </div>
+                <div class="feed-content">
+                    <div class="feed-title">Main Road Maintenance Work Near Ward 12</div>
+                    <div class="feed-desc">Repair work is underway on the main connector road. Expect slight traffic diversions between 10 AM to 4 PM today.</div>
+                    <div class="feed-footer">
+                        <span style="font-size: 11px; color: var(--text-muted); font-weight: 700;">🕒 2 hours ago • Bhatpara Updates</span>
+                        <button class="cp-btn-primary" style="padding: 6px 14px; font-size: 11px;" onclick="showToast('Opening map details...')">View Map</button>
+                    </div>
                 </div>
             </div>
 
-            <city-ad-space></city-ad-space>
+            <!-- SECTION 2: LOCAL BUSINESS SPOTLIGHT -->
+            <div class="feed-section-title">
+                <span>⭐ Local Business Spotlight</span>
+            </div>
 
-            <!-- Deep Content: Hyperlocal Feeds -->
-            <div>
-                <h3 style="margin: 0 0 12px 0; font-size: 15px;">Discover Services Near You</h3>
-                
-                <div class="cp-card flex-between" style="padding: 12px;">
-                    <div class="d-flex gap-3 align-items-center">
-                        <div style="font-size: 24px;">🛠️</div>
-                        <div>
-                            <div style="font-size: 13px; font-weight: 700;">Find Plumbers & Electricians</div>
-                            <div style="font-size: 11px; color: var(--text-muted);">24 Verified professionals nearby</div>
-                        </div>
-                    </div>
-                    <button class="cp-btn-outline" style="width: auto; padding: 6px 12px; font-size: 12px;">View</button>
+            <div class="feed-card">
+                <div class="feed-img-placeholder" style="background: linear-gradient(135deg, #fef3c7 0%, #fee2e2 100%);">
+                    <span>🍲</span>
+                    <div class="feed-tag" style="background: var(--cp-orange);">Verified Partner</div>
                 </div>
-
-                <div class="cp-card flex-between" style="padding: 12px;">
-                    <div class="d-flex gap-3 align-items-center">
-                        <div style="font-size: 24px;">🚑</div>
-                        <div>
-                            <div style="font-size: 13px; font-weight: 700;">Emergency Hospitals</div>
-                            <div style="font-size: 11px; color: var(--text-muted);">Open 24x7 • Tap to call</div>
-                        </div>
+                <div class="feed-content">
+                    <div class="feed-title">Gupta Sweets & Snacks Special Thali</div>
+                    <div class="feed-desc">Get fresh traditional sweets and home-delivered snacks directly from your trusted local market store.</div>
+                    <div class="feed-footer">
+                        <span style="font-size: 11px; color: var(--cp-green); font-weight: 800;">⭐ 4.8 (120+ Orders)</span>
+                        <button class="cp-btn-primary" style="padding: 6px 14px; font-size: 11px; background: var(--cp-green);" onclick="window.location.href='cart.html'">Order Now</button>
                     </div>
-                    <button class="cp-btn-outline" style="width: auto; padding: 6px 12px; font-size: 12px;">View</button>
                 </div>
             </div>
+
         </main>
+        
         <bottom-nav></bottom-nav>
     </div>
+
+    <!-- Master Scripts -->
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/config.js"></script>
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/store.js"></script>
     <script src="https://anupsharmasharma012-debug.github.io/citypulse-core/components.js"></script>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('cp_theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+        function showToast(msg) { alert(msg); }
+    </script>
 </body>
 </html>
-
